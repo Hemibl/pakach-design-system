@@ -1,0 +1,2542 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>פקח-נייד — Design System | 200Apps</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      /* Brand */
+      --navy-900: #0A1E3F;
+      --navy-700: #1B3A6B;
+      --navy-500: #2756A8;
+      --navy-100: #EEF2FF;
+
+      /* Semantic - Traffic Light */
+      --red-500: #E53935;
+      --red-50: #FFEBEE;
+      --orange-500: #FB8C00;
+      --orange-50: #FFF3E0;
+      --green-500: #43A047;
+      --green-50: #E8F5E9;
+
+      /* UI */
+      --blue-accent: #2979FF;
+      --teal-500: #00838F;
+      --gray-900: #1A1A2E;
+      --gray-700: #444444;
+      --gray-500: #888888;
+      --gray-400: #AAAAAA;
+      --gray-300: #C0C0C0;
+      --gray-200: #E0E0E0;
+      --gray-100: #F0F0F0;
+      --gray-50: #F5F7FA;
+      --white: #FFFFFF;
+
+      /* Borders */
+      --border-light: #E2E8F0;
+      --border-subtle: #F5F5F5;
+
+      /* Radius */
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 14px;
+      --radius-xl: 18px;
+      --radius-pill: 20px;
+      --radius-full: 50%;
+
+      /* Shadows */
+      --shadow-sm: 0 2px 10px rgba(0,0,0,0.06);
+      --shadow-md: 0 4px 18px rgba(27,58,107,0.38);
+      --shadow-lg: 0 8px 32px rgba(0,0,0,0.18);
+
+      /* Sidebar */
+      --sidebar-w: 260px;
+    }
+
+    body {
+      font-family: 'Heebo', sans-serif;
+      background: var(--gray-50);
+      color: var(--gray-900);
+      line-height: 1.6;
+    }
+
+    /* ═══════════════════════════════
+       LAYOUT
+    ═══════════════════════════════ */
+    .ds-sidebar {
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: var(--sidebar-w);
+      height: 100vh;
+      background: var(--navy-700);
+      color: white;
+      overflow-y: auto;
+      z-index: 1000;
+      padding: 0;
+    }
+
+    .ds-sidebar::-webkit-scrollbar { width: 4px; }
+    .ds-sidebar::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 2px; }
+
+    .ds-sidebar-header {
+      padding: 28px 24px 20px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .ds-sidebar-logo {
+      font-size: 22px;
+      font-weight: 900;
+      margin-bottom: 4px;
+    }
+
+    .ds-sidebar-sub {
+      font-size: 12px;
+      color: rgba(255,255,255,0.5);
+    }
+
+    .ds-sidebar-nav {
+      padding: 16px 0;
+    }
+
+    .ds-nav-section {
+      padding: 0 24px;
+      margin-bottom: 6px;
+      font-size: 10px;
+      font-weight: 700;
+      color: rgba(255,255,255,0.35);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-top: 18px;
+    }
+
+    .ds-nav-section:first-child {
+      margin-top: 0;
+    }
+
+    .ds-nav-link {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 9px 24px;
+      color: rgba(255,255,255,0.7);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      transition: all 0.15s;
+      border-right: 3px solid transparent;
+    }
+
+    .ds-nav-link:hover {
+      background: rgba(255,255,255,0.08);
+      color: white;
+    }
+
+    .ds-nav-link.active {
+      background: rgba(255,255,255,0.12);
+      color: white;
+      border-right-color: white;
+      font-weight: 700;
+    }
+
+    .ds-nav-link i {
+      width: 18px;
+      text-align: center;
+      font-size: 13px;
+    }
+
+    .ds-main {
+      margin-right: var(--sidebar-w);
+      padding: 40px 48px 80px;
+      max-width: 960px;
+    }
+
+    /* ═══════════════════════════════
+       TYPOGRAPHY SYSTEM
+    ═══════════════════════════════ */
+    .ds-page-title {
+      font-size: 36px;
+      font-weight: 900;
+      color: var(--navy-700);
+      margin-bottom: 8px;
+    }
+
+    .ds-page-desc {
+      font-size: 16px;
+      color: var(--gray-500);
+      margin-bottom: 40px;
+      max-width: 600px;
+    }
+
+    .ds-section {
+      margin-bottom: 56px;
+    }
+
+    .ds-section-title {
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--gray-900);
+      margin-bottom: 6px;
+      padding-bottom: 12px;
+      border-bottom: 2px solid var(--gray-200);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .ds-section-title i {
+      color: var(--navy-500);
+      font-size: 20px;
+    }
+
+    .ds-section-desc {
+      font-size: 14px;
+      color: var(--gray-500);
+      margin-bottom: 24px;
+      margin-top: 8px;
+    }
+
+    .ds-subsection {
+      margin-bottom: 32px;
+    }
+
+    .ds-subsection-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--gray-700);
+      margin-bottom: 14px;
+    }
+
+    /* ═══════════════════════════════
+       COMPONENT DISPLAY
+    ═══════════════════════════════ */
+    .ds-card {
+      background: white;
+      border-radius: var(--radius-xl);
+      padding: 28px;
+      box-shadow: var(--shadow-sm);
+      margin-bottom: 20px;
+    }
+
+    .ds-card-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--gray-700);
+      margin-bottom: 16px;
+    }
+
+    .ds-preview {
+      background: var(--gray-50);
+      border: 1px solid var(--gray-100);
+      border-radius: var(--radius-md);
+      padding: 24px;
+      margin-bottom: 16px;
+    }
+
+    .ds-preview-dark {
+      background: var(--navy-700);
+      border-color: var(--navy-900);
+    }
+
+    .ds-code {
+      background: var(--gray-900);
+      color: #E0E0E0;
+      border-radius: var(--radius-sm);
+      padding: 16px 20px;
+      font-family: 'SF Mono', 'Menlo', monospace;
+      font-size: 13px;
+      line-height: 1.7;
+      overflow-x: auto;
+      direction: ltr;
+      text-align: left;
+      position: relative;
+    }
+
+    .ds-code-label {
+      position: absolute;
+      top: 8px;
+      left: 12px;
+      font-size: 10px;
+      color: rgba(255,255,255,0.3);
+      font-family: 'Heebo', sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .ds-code .tag { color: #FF7B72; }
+    .ds-code .attr { color: #79C0FF; }
+    .ds-code .val { color: #A5D6FF; }
+    .ds-code .cls { color: #7EE787; }
+    .ds-code .cmt { color: #8B949E; }
+    .ds-code .prop { color: #D2A8FF; }
+    .ds-code .str { color: #A5D6FF; }
+
+    /* ═══════════════════════════════
+       COLOR SWATCHES
+    ═══════════════════════════════ */
+    .ds-color-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 14px;
+    }
+
+    .ds-swatch {
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      background: white;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .ds-swatch-color {
+      height: 72px;
+      display: flex;
+      align-items: flex-end;
+      padding: 8px 12px;
+    }
+
+    .ds-swatch-color span {
+      font-size: 11px;
+      font-weight: 600;
+      color: white;
+      background: rgba(0,0,0,0.25);
+      padding: 2px 8px;
+      border-radius: 4px;
+      direction: ltr;
+    }
+
+    .ds-swatch-info {
+      padding: 10px 12px;
+    }
+
+    .ds-swatch-name {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--gray-900);
+    }
+
+    .ds-swatch-var {
+      font-size: 11px;
+      color: var(--gray-400);
+      font-family: 'SF Mono', 'Menlo', monospace;
+      direction: ltr;
+      text-align: right;
+    }
+
+    /* ═══════════════════════════════
+       TYPOGRAPHY DISPLAY
+    ═══════════════════════════════ */
+    .ds-type-row {
+      display: flex;
+      align-items: baseline;
+      gap: 20px;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--gray-100);
+    }
+
+    .ds-type-row:last-child {
+      border-bottom: none;
+    }
+
+    .ds-type-meta {
+      flex-shrink: 0;
+      width: 160px;
+      text-align: left;
+      direction: ltr;
+    }
+
+    .ds-type-meta-name {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--navy-500);
+    }
+
+    .ds-type-meta-spec {
+      font-size: 11px;
+      color: var(--gray-400);
+      font-family: 'SF Mono', 'Menlo', monospace;
+    }
+
+    .ds-type-sample {
+      flex: 1;
+      color: var(--gray-900);
+    }
+
+    /* ═══════════════════════════════
+       COMPONENT ROWS
+    ═══════════════════════════════ */
+    .ds-flex-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .ds-flex-col {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .ds-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+
+    .ds-table th {
+      text-align: right;
+      padding: 10px 14px;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--gray-400);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      border-bottom: 2px solid var(--gray-200);
+    }
+
+    .ds-table td {
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--gray-100);
+      vertical-align: middle;
+    }
+
+    .ds-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .ds-table code {
+      font-family: 'SF Mono', 'Menlo', monospace;
+      font-size: 12px;
+      background: var(--gray-50);
+      padding: 2px 8px;
+      border-radius: 4px;
+      color: var(--navy-500);
+      direction: ltr;
+      display: inline-block;
+    }
+
+    .ds-inline-code {
+      font-family: 'SF Mono', 'Menlo', monospace;
+      font-size: 12px;
+      background: var(--gray-50);
+      padding: 2px 8px;
+      border-radius: 4px;
+      color: var(--navy-500);
+      direction: ltr;
+      display: inline-block;
+      border: 1px solid var(--gray-200);
+    }
+
+    .ds-note {
+      background: var(--navy-100);
+      border-right: 4px solid var(--navy-500);
+      padding: 14px 18px;
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      font-size: 13px;
+      color: var(--navy-700);
+      margin: 16px 0;
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+    }
+
+    .ds-note i {
+      margin-top: 3px;
+      flex-shrink: 0;
+    }
+
+    .ds-divider {
+      height: 1px;
+      background: var(--gray-200);
+      margin: 24px 0;
+    }
+
+    /* ═══════════════════════════════
+       RESPONSIVE
+    ═══════════════════════════════ */
+    @media (max-width: 768px) {
+      .ds-sidebar { display: none; }
+      .ds-main { margin-right: 0; padding: 24px 16px 60px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════
+     SIDEBAR NAVIGATION
+═══════════════════════════════════ -->
+<aside class="ds-sidebar">
+  <div class="ds-sidebar-header">
+    <div class="ds-sidebar-logo">Design System</div>
+    <div class="ds-sidebar-sub">פקח-נייד v1.0 - 200Apps</div>
+  </div>
+  <nav class="ds-sidebar-nav">
+    <div class="ds-nav-section">יסודות</div>
+    <a href="#colors" class="ds-nav-link active"><i class="fas fa-palette"></i> צבעים</a>
+    <a href="#typography" class="ds-nav-link"><i class="fas fa-font"></i> טיפוגרפיה</a>
+    <a href="#spacing" class="ds-nav-link"><i class="fas fa-ruler-combined"></i> ריווח וגודל</a>
+    <a href="#shadows" class="ds-nav-link"><i class="fas fa-clone"></i> צללים ורדיוס</a>
+
+    <div class="ds-nav-section">רכיבים</div>
+    <a href="#buttons" class="ds-nav-link"><i class="fas fa-hand-pointer"></i> כפתורים</a>
+    <a href="#inputs" class="ds-nav-link"><i class="fas fa-keyboard"></i> שדות קלט</a>
+    <a href="#cards" class="ds-nav-link"><i class="fas fa-square"></i> כרטיסים</a>
+    <a href="#badges" class="ds-nav-link"><i class="fas fa-certificate"></i> תגיות וצ'יפים</a>
+    <a href="#nav" class="ds-nav-link"><i class="fas fa-bars"></i> ניווט</a>
+    <a href="#lists" class="ds-nav-link"><i class="fas fa-list"></i> רשימות</a>
+    <a href="#toggles" class="ds-nav-link"><i class="fas fa-toggle-on"></i> מתגים</a>
+    <a href="#bottomsheet" class="ds-nav-link"><i class="fas fa-window-maximize"></i> Bottom Sheet</a>
+    <a href="#markers" class="ds-nav-link"><i class="fas fa-map-marker-alt"></i> סימנים במפה</a>
+
+    <div class="ds-nav-section">דפוסים</div>
+    <a href="#traffic-light" class="ds-nav-link"><i class="fas fa-traffic-light"></i> מערכת רמזור</a>
+    <a href="#rtl" class="ds-nav-link"><i class="fas fa-align-right"></i> RTL</a>
+    <a href="#layout" class="ds-nav-link"><i class="fas fa-th-large"></i> מבנה עמוד</a>
+  </nav>
+</aside>
+
+<!-- ═══════════════════════════════════
+     MAIN CONTENT
+═══════════════════════════════════ -->
+<main class="ds-main">
+
+  <h1 class="ds-page-title">פקח-נייד Design System</h1>
+  <p class="ds-page-desc">
+    מערכת העיצוב של אפליקציית אכיפת תיקוף בתחבורה ציבורית. מבוססת על פונט Heebo, כיווניות RTL, וסכמת צבעים מסוג "רמזור" לדירוג חומרת אי-תיקוף.
+  </p>
+
+  <!-- ═══════════════════════════════════════════
+       1. COLORS
+  ═══════════════════════════════════════════ -->
+  <section class="ds-section" id="colors">
+    <h2 class="ds-section-title"><i class="fas fa-palette"></i> צבעים</h2>
+    <p class="ds-section-desc">
+      פלטת הצבעים בנויה משלוש שכבות: צבעי מותג (Navy), צבעי רמזור סמנטיים (אדום/כתום/ירוק), וצבעי UI ניטרליים.
+    </p>
+
+    <!-- Brand Colors -->
+    <div class="ds-subsection">
+      <h3 class="ds-subsection-title">צבעי מותג - Navy</h3>
+      <div class="ds-color-grid">
+        <div class="ds-swatch">
+          <div class="ds-swatch-color" style="background:#0A1E3F;"><span>#0A1E3F</span></div>
+          <div class="ds-swatch-info">
+            <div class="ds-swatch-name">Navy 900</div>
+            <div class="ds-swatch-var">--navy-900</div>
+          </div>
+        </div>
+        <div class="ds-swatch">
+          <div class="ds-swatch-color" style="background:#1B3A6B;"><span>#1B3A6B</span></div>
+          <div class="ds-swatch-info">
+            <div class="ds-swatch-name">Navy 700 (ראשי)</div>
+            <div class="ds-swatch-var">--navy-700</div>
+          </div>
+        </div>
+        <div class="ds-swatch">
+          <div class="ds-swatch-color" style="background:#2756A8;"><span>#2756A8</span></div>
+          <div class="ds-swatch-info">
+            <div class="ds-swatch-name">Navy 500</div>
+            <div class="ds-swatch-var">--navy-500</div>
+          </div>
+        </div>
+        <div class="ds-swatch">
+          <div class="ds-swatch-color" style="background:#EEF2FF;"><span style="color:#1B3A6B;background:rgba(27,58,107,0.1);">#EEF2FF</span></div>
+          <div class="ds-swatch-info">
+            <div class="ds-swatch-name">Navy 100</div>
+            <div class="ds-swatch-var">--navy-100</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Semantic Colors -->
+    <div class="ds-subsection">
+      <h3 class="ds-subsection-title">צבעי רמזור - סמנטיים</h3>
+      <div class="ds-color-grid">
+        <div class="ds-swatch">
+          <div class="ds-swatch-color" style="background:#E53935;"><span>#E53935</span></div>
+          <div class="ds-swatch-info">
+            <div class="ds-swatch-name">Red 500 - עדיפות גבוהה</div>
+            <div class="ds-swatch-var">--red-500</div>
+          </div>
+        </div>
+        <div class="ds-swatch">
+          <div class="ds-swatch-color" style="background:#FFEBEE;"><span style="color:#E53935;background:rgba(229,57,53,0.1);">#FFEBEE</span></div>
+          <div class="ds-swatch-info">
+            <div class="ds-swatch-name">Red 50 - רקע</div>
+            <div class="ds-swatch-var">--red-50</div>
+          </div>
+        </div>
+        <div class="ds-swatch">
+          <div class="ds-swatch-color" style="background:#FB8C00;"><span>#FB8C00</span></div>
+          <div class="ds-swatch-info">
+            <div class="ds-swatch-name">Orange 500 - עדיפות בינונית</div>
+            <div class="ds-swatch-var">--orange-500</div>
+          </div>
+        </div>
+        <div class="ds-swatch">
+          <div class="ds-swatch-color" style="background:#FFF3E0;"><span style="color:#FB8C00;background:rgba(251,140,0,0.1);">#FFF3E0</span></div>
+          <div class="ds-swatch-info">
+            <div class="ds-swatch-name">Orange 50 - רקע</div>
+            <div class="ds-swatch-var">--orange-50</div>
+          </div>
+        </div>
+        <div class="ds-swatch">
+          <div class="ds-swatch-color" style="background:#43A047;"><span>#43A047</span></div>
+          <div class="ds-swatch-info">
+            <div class="ds-swatch-name">Green 500 - עדיפות נמוכה</div>
+            <div class="ds-swatch-var">--green-500</div>
+          </div>
+        </div>
+        <div class="ds-swatch">
+          <div class="ds-swatch-color" style="background:#E8F5E9;"><span style="color:#43A047;background:rgba(67,160,71,0.1);">#E8F5E9</span></div>
+          <div class="ds-swatch-info">
+            <div class="ds-swatch-name">Green 50 - רקע</div>
+            <div class="ds-swatch-var">--green-50</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- UI / Neutral Colors -->
+    <div class="ds-subsection">
+      <h3 class="ds-subsection-title">צבעים ניטרליים - UI</h3>
+      <div class="ds-color-grid">
+        <div class="ds-swatch">
+          <div class="ds-swatch-color" style="background:#1A1A2E;"><span>#1A1A2E</span></div>
+          <div class="ds-swatch-info">
+            <div class="ds-swatch-name">Gray 900 - טקסט ראשי</div>
+            <div class="ds-swatch-var">--gray-900</div>
+          </div>
+        </div>
+        <div class="ds-swatch">
+          <div class="ds-swatch-color" style="background:#444444;"><span>#444444</span></div>
+          <div class="ds-swatch-info">
+            <div class="ds-swatch-name">Gray 700 - טקסט משני</div>
+            <div class="ds-swatch-var">--gray-700</div>
+          </div>
+        </div>
+        <div class="ds-swatch">
+          <div class="ds-swatch-color" style="background:#888888;"><span>#888888</span></div>
+          <div class="ds-swatch-info">
+            <div class="ds-swatch-name">Gray 500</div>
+            <div class="ds-swatch-var">--gray-500</div>
+          </div>
+        </div>
+        <div class="ds-swatch">
+          <div class="ds-swatch-color" style="background:#AAAAAA;"><span>#AAAAAA</span></div>
+          <div class="ds-swatch-info">
+            <div class="ds-swatch-name">Gray 400 - תוויות</div>
+            <div class="ds-swatch-var">--gray-400</div>
+          </div>
+        </div>
+        <div class="ds-swatch">
+          <div class="ds-swatch-color" style="background:#E2E8F0;"><span style="color:#444;background:rgba(0,0,0,0.08);">#E2E8F0</span></div>
+          <div class="ds-swatch-info">
+            <div class="ds-swatch-name">Border Light</div>
+            <div class="ds-swatch-var">--border-light</div>
+          </div>
+        </div>
+        <div class="ds-swatch">
+          <div class="ds-swatch-color" style="background:#F5F7FA;"><span style="color:#444;background:rgba(0,0,0,0.08);">#F5F7FA</span></div>
+          <div class="ds-swatch-info">
+            <div class="ds-swatch-name">Gray 50 - רקע דף</div>
+            <div class="ds-swatch-var">--gray-50</div>
+          </div>
+        </div>
+        <div class="ds-swatch">
+          <div class="ds-swatch-color" style="background:#2979FF;"><span>#2979FF</span></div>
+          <div class="ds-swatch-info">
+            <div class="ds-swatch-name">Blue Accent - מיקום פקח</div>
+            <div class="ds-swatch-var">--blue-accent</div>
+          </div>
+        </div>
+        <div class="ds-swatch">
+          <div class="ds-swatch-color" style="background:#00838F;"><span>#00838F</span></div>
+          <div class="ds-swatch-info">
+            <div class="ds-swatch-name">Teal 500</div>
+            <div class="ds-swatch-var">--teal-500</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Gradients -->
+    <div class="ds-subsection">
+      <h3 class="ds-subsection-title">גרדיאנטים</h3>
+      <div class="ds-color-grid" style="grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));">
+        <div class="ds-swatch">
+          <div class="ds-swatch-color" style="height:80px;background:linear-gradient(135deg, #1B3A6B 0%, #2756A8 100%);"><span>Primary Gradient</span></div>
+          <div class="ds-swatch-info">
+            <div class="ds-swatch-name">כפתורים ראשיים</div>
+            <div class="ds-swatch-var">linear-gradient(135deg, #1B3A6B, #2756A8)</div>
+          </div>
+        </div>
+        <div class="ds-swatch">
+          <div class="ds-swatch-color" style="height:80px;background:linear-gradient(170deg, #1B3A6B 0%, #0A1E3F 100%);"><span>Dark Gradient</span></div>
+          <div class="ds-swatch-info">
+            <div class="ds-swatch-name">Hero / Splash</div>
+            <div class="ds-swatch-var">linear-gradient(170deg, #1B3A6B, #0A1E3F)</div>
+          </div>
+        </div>
+        <div class="ds-swatch">
+          <div class="ds-swatch-color" style="height:80px;background:radial-gradient(ellipse at top, #1B3A6B 0%, #0D2447 60%);"><span>BG Gradient</span></div>
+          <div class="ds-swatch-info">
+            <div class="ds-swatch-name">רקע דסקטופ</div>
+            <div class="ds-swatch-var">radial-gradient(ellipse at top, #1B3A6B, #0D2447)</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       2. TYPOGRAPHY
+  ═══════════════════════════════════════════ -->
+  <section class="ds-section" id="typography">
+    <h2 class="ds-section-title"><i class="fas fa-font"></i> טיפוגרפיה</h2>
+    <p class="ds-section-desc">
+      הפונט הראשי הוא <strong>Heebo</strong> - פונט עברי מ-Google Fonts. הוא תומך במשקלים 300-900 ונותן מראה נקי ומודרני ב-RTL.
+    </p>
+
+    <div class="ds-card">
+      <div class="ds-card-title">סולם הפונט</div>
+      <div class="ds-type-row">
+        <div class="ds-type-meta">
+          <div class="ds-type-meta-name">Splash Title</div>
+          <div class="ds-type-meta-spec">30px / 900</div>
+        </div>
+        <div class="ds-type-sample" style="font-size:30px;font-weight:900;">פקח-נייד</div>
+      </div>
+      <div class="ds-type-row">
+        <div class="ds-type-meta">
+          <div class="ds-type-meta-name">App Name</div>
+          <div class="ds-type-meta-spec">24px / 900</div>
+        </div>
+        <div class="ds-type-sample" style="font-size:24px;font-weight:900;">פקח-נייד</div>
+      </div>
+      <div class="ds-type-row">
+        <div class="ds-type-meta">
+          <div class="ds-type-meta-name">Route Number</div>
+          <div class="ds-type-meta-spec">24px / 900</div>
+        </div>
+        <div class="ds-type-sample" style="font-size:24px;font-weight:900;">480</div>
+      </div>
+      <div class="ds-type-row">
+        <div class="ds-type-meta">
+          <div class="ds-type-meta-name">Big Metric</div>
+          <div class="ds-type-meta-spec">36px / 900</div>
+        </div>
+        <div class="ds-type-sample" style="font-size:36px;font-weight:900;color:#E53935;">47%</div>
+      </div>
+      <div class="ds-type-row">
+        <div class="ds-type-meta">
+          <div class="ds-type-meta-name">Header Title</div>
+          <div class="ds-type-meta-spec">17px / 700</div>
+        </div>
+        <div class="ds-type-sample" style="font-size:17px;font-weight:700;">הגדרות</div>
+      </div>
+      <div class="ds-type-row">
+        <div class="ds-type-meta">
+          <div class="ds-type-meta-name">Metric Value</div>
+          <div class="ds-type-meta-spec">17px / 700</div>
+        </div>
+        <div class="ds-type-sample" style="font-size:17px;font-weight:700;">1.2 <span style="font-size:12px;color:#AAA;font-weight:400;">ק"מ</span></div>
+      </div>
+      <div class="ds-type-row">
+        <div class="ds-type-meta">
+          <div class="ds-type-meta-name">Button Text</div>
+          <div class="ds-type-meta-spec">16-17px / 700</div>
+        </div>
+        <div class="ds-type-sample" style="font-size:17px;font-weight:700;">כניסה למערכת</div>
+      </div>
+      <div class="ds-type-row">
+        <div class="ds-type-meta">
+          <div class="ds-type-meta-name">User Name</div>
+          <div class="ds-type-meta-spec">16px / 700</div>
+        </div>
+        <div class="ds-type-sample" style="font-size:16px;font-weight:700;">יוסי כהן</div>
+      </div>
+      <div class="ds-type-row">
+        <div class="ds-type-meta">
+          <div class="ds-type-meta-name">Input / Body</div>
+          <div class="ds-type-meta-spec">15px / 400</div>
+        </div>
+        <div class="ds-type-sample" style="font-size:15px;font-weight:400;">שדרות רוטשילד 42, תל אביב</div>
+      </div>
+      <div class="ds-type-row">
+        <div class="ds-type-meta">
+          <div class="ds-type-meta-name">Row Item</div>
+          <div class="ds-type-meta-spec">15px / 400</div>
+        </div>
+        <div class="ds-type-sample" style="font-size:15px;font-weight:400;">רדיוס תצוגה</div>
+      </div>
+      <div class="ds-type-row">
+        <div class="ds-type-meta">
+          <div class="ds-type-meta-name">Direction</div>
+          <div class="ds-type-meta-spec">14px / 400</div>
+        </div>
+        <div class="ds-type-sample" style="font-size:14px;font-weight:400;color:#555;">יפו &#8592; תל אביב מרכז</div>
+      </div>
+      <div class="ds-type-row">
+        <div class="ds-type-meta">
+          <div class="ds-type-meta-name">Stop Value</div>
+          <div class="ds-type-meta-spec">14px / 600</div>
+        </div>
+        <div class="ds-type-sample" style="font-size:14px;font-weight:600;">כיכר דיזנגוף</div>
+      </div>
+      <div class="ds-type-row">
+        <div class="ds-type-meta">
+          <div class="ds-type-meta-name">Alert Pill</div>
+          <div class="ds-type-meta-spec">13px / 700</div>
+        </div>
+        <div class="ds-type-sample" style="font-size:13px;font-weight:700;">3 אדומים</div>
+      </div>
+      <div class="ds-type-row">
+        <div class="ds-type-meta">
+          <div class="ds-type-meta-name">Chip / Op</div>
+          <div class="ds-type-meta-spec">13px / 500-700</div>
+        </div>
+        <div class="ds-type-sample" style="font-size:13px;font-weight:500;">מטרופולין</div>
+      </div>
+      <div class="ds-type-row">
+        <div class="ds-type-meta">
+          <div class="ds-type-meta-name">Form Label</div>
+          <div class="ds-type-meta-spec">13px / 600</div>
+        </div>
+        <div class="ds-type-sample" style="font-size:13px;font-weight:600;color:#444;">מספר עובד / שם משתמש</div>
+      </div>
+      <div class="ds-type-row">
+        <div class="ds-type-meta">
+          <div class="ds-type-meta-name">Filter Tab</div>
+          <div class="ds-type-meta-spec">12px / 700</div>
+        </div>
+        <div class="ds-type-sample" style="font-size:12px;font-weight:700;">אדום (3)</div>
+      </div>
+      <div class="ds-type-row">
+        <div class="ds-type-meta">
+          <div class="ds-type-meta-name">Caption / Label</div>
+          <div class="ds-type-meta-spec">11px / 400-700</div>
+        </div>
+        <div class="ds-type-sample" style="font-size:11px;font-weight:400;color:#AAA;">% אי-תיקוף (ממוצע קו)</div>
+      </div>
+      <div class="ds-type-row">
+        <div class="ds-type-meta">
+          <div class="ds-type-meta-name">Section Label</div>
+          <div class="ds-type-meta-spec">11px / 700 / uppercase</div>
+        </div>
+        <div class="ds-type-sample" style="font-size:11px;font-weight:700;color:#AAA;letter-spacing:0.8px;">תצוגה</div>
+      </div>
+    </div>
+
+    <!-- Font Weights -->
+    <div class="ds-card">
+      <div class="ds-card-title">משקלי פונט בשימוש</div>
+      <table class="ds-table">
+        <thead>
+          <tr><th>משקל</th><th>ערך</th><th>שימוש</th><th>דוגמה</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Light</td>
+            <td><code>300</code></td>
+            <td>לא בשימוש פעיל (זמין כרזרבה)</td>
+            <td style="font-weight:300;">טקסט דק</td>
+          </tr>
+          <tr>
+            <td>Regular</td>
+            <td><code>400</code></td>
+            <td>גוף טקסט, שדות קלט, כיוונים</td>
+            <td style="font-weight:400;">טקסט רגיל</td>
+          </tr>
+          <tr>
+            <td>Medium</td>
+            <td><code>500</code></td>
+            <td>צ'יפים, סיידבר</td>
+            <td style="font-weight:500;">טקסט בינוני</td>
+          </tr>
+          <tr>
+            <td>SemiBold</td>
+            <td><code>600</code></td>
+            <td>תוויות טופס, ערכי תחנות, כפתורי רדיוס</td>
+            <td style="font-weight:600;">טקסט חצי-עבה</td>
+          </tr>
+          <tr>
+            <td>Bold</td>
+            <td><code>700</code></td>
+            <td>כפתורים, כותרות, התראות, טאבים פילטר</td>
+            <td style="font-weight:700;">טקסט עבה</td>
+          </tr>
+          <tr>
+            <td>ExtraBold</td>
+            <td><code>800</code></td>
+            <td>אווטאר ראשי תיבות</td>
+            <td style="font-weight:800;">טקסט חזק</td>
+          </tr>
+          <tr>
+            <td>Black</td>
+            <td><code>900</code></td>
+            <td>שם אפליקציה, מספרי קו, מדדים גדולים</td>
+            <td style="font-weight:900;">טקסט שחור</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="ds-note">
+      <i class="fas fa-info-circle"></i>
+      <div>
+        <strong>טעינת הפונט:</strong> יש לטעון את Heebo מ-Google Fonts עם כל המשקלים הנדרשים:
+        <br>
+        <span class="ds-inline-code" style="margin-top:6px;">https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       3. SPACING & SIZING
+  ═══════════════════════════════════════════ -->
+  <section class="ds-section" id="spacing">
+    <h2 class="ds-section-title"><i class="fas fa-ruler-combined"></i> ריווח וגודל</h2>
+    <p class="ds-section-desc">
+      ריווח מבוסס על מכפלות של 4px. הגדלים העיקריים:
+    </p>
+
+    <div class="ds-card">
+      <table class="ds-table">
+        <thead>
+          <tr><th>שם</th><th>ערך</th><th>שימוש</th><th>ויזואלי</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>2xs</td>
+            <td><code>4px</code></td>
+            <td>מרווח מינימלי, gaps פנימיים</td>
+            <td><div style="width:4px;height:16px;background:#1B3A6B;border-radius:2px;"></div></td>
+          </tr>
+          <tr>
+            <td>xs</td>
+            <td><code>8px</code></td>
+            <td>מרווח בין אייקונים, gaps קטנים</td>
+            <td><div style="width:8px;height:16px;background:#1B3A6B;border-radius:2px;"></div></td>
+          </tr>
+          <tr>
+            <td>sm</td>
+            <td><code>12px</code></td>
+            <td>padding פנימי, מרווחי רשימה</td>
+            <td><div style="width:12px;height:16px;background:#1B3A6B;border-radius:2px;"></div></td>
+          </tr>
+          <tr>
+            <td>md</td>
+            <td><code>16px</code></td>
+            <td>padding צדדי ראשי, gap בין רכיבים</td>
+            <td><div style="width:16px;height:16px;background:#1B3A6B;border-radius:2px;"></div></td>
+          </tr>
+          <tr>
+            <td>lg</td>
+            <td><code>20px</code></td>
+            <td>padding של bottom sheet body</td>
+            <td><div style="width:20px;height:16px;background:#1B3A6B;border-radius:2px;"></div></td>
+          </tr>
+          <tr>
+            <td>xl</td>
+            <td><code>24px</code></td>
+            <td>padding של טפסים, hero sections</td>
+            <td><div style="width:24px;height:16px;background:#1B3A6B;border-radius:2px;"></div></td>
+          </tr>
+          <tr>
+            <td>2xl</td>
+            <td><code>28px</code></td>
+            <td>padding עליון של login hero</td>
+            <td><div style="width:28px;height:16px;background:#1B3A6B;border-radius:2px;"></div></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="ds-card">
+      <div class="ds-card-title">גדלי אלמנטים קבועים</div>
+      <table class="ds-table">
+        <thead>
+          <tr><th>אלמנט</th><th>גובה / גודל</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Status Bar</td><td><code>52px</code></td></tr>
+          <tr><td>Icon Button</td><td><code>36 x 36px</code></td></tr>
+          <tr><td>Settings Icon</td><td><code>32 x 32px</code></td></tr>
+          <tr><td>FAB (Floating Action)</td><td><code>48 x 48px</code></td></tr>
+          <tr><td>User Avatar</td><td><code>52 x 52px</code></td></tr>
+          <tr><td>Login App Icon</td><td><code>76 x 76px</code></td></tr>
+          <tr><td>Splash Icon</td><td><code>96 x 96px</code></td></tr>
+          <tr><td>Bus Marker Circle</td><td><code>44 x 44px</code></td></tr>
+          <tr><td>Inspector Dot</td><td><code>18 x 18px</code></td></tr>
+          <tr><td>Toggle</td><td><code>44 x 26px</code></td></tr>
+          <tr><td>Phone Frame</td><td><code>390 x 844px</code></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       4. SHADOWS & RADIUS
+  ═══════════════════════════════════════════ -->
+  <section class="ds-section" id="shadows">
+    <h2 class="ds-section-title"><i class="fas fa-clone"></i> צללים ורדיוס</h2>
+
+    <div class="ds-subsection">
+      <h3 class="ds-subsection-title">צללים</h3>
+      <div class="ds-card">
+        <div style="display:flex;flex-wrap:wrap;gap:24px;">
+          <div style="text-align:center;">
+            <div style="width:120px;height:80px;background:white;border-radius:14px;box-shadow:0 2px 10px rgba(0,0,0,0.06);margin-bottom:8px;"></div>
+            <div style="font-size:12px;font-weight:700;color:#444;">Shadow SM</div>
+            <div style="font-size:11px;color:#AAA;direction:ltr;">0 2px 10px rgba(0,0,0,0.06)</div>
+            <div style="font-size:11px;color:#888;">כרטיסים, הגדרות</div>
+          </div>
+          <div style="text-align:center;">
+            <div style="width:120px;height:80px;background:linear-gradient(135deg,#1B3A6B,#2756A8);border-radius:14px;box-shadow:0 4px 18px rgba(27,58,107,0.38);margin-bottom:8px;"></div>
+            <div style="font-size:12px;font-weight:700;color:#444;">Shadow MD</div>
+            <div style="font-size:11px;color:#AAA;direction:ltr;">0 4px 18-20px rgba(27,58,107,0.38)</div>
+            <div style="font-size:11px;color:#888;">כפתורים ראשיים</div>
+          </div>
+          <div style="text-align:center;">
+            <div style="width:120px;height:80px;background:white;border-radius:24px;box-shadow:0 -8px 32px rgba(0,0,0,0.18);margin-bottom:8px;"></div>
+            <div style="font-size:12px;font-weight:700;color:#444;">Shadow LG</div>
+            <div style="font-size:11px;color:#AAA;direction:ltr;">0 -8px 32px rgba(0,0,0,0.18)</div>
+            <div style="font-size:11px;color:#888;">Bottom Sheet</div>
+          </div>
+          <div style="text-align:center;">
+            <div style="width:120px;height:80px;background:white;border-radius:50%;box-shadow:0 4px 18px rgba(0,0,0,0.22);margin-bottom:8px;display:flex;align-items:center;justify-content:center;color:#1B3A6B;font-size:20px;"><i class="fas fa-location-arrow"></i></div>
+            <div style="font-size:12px;font-weight:700;color:#444;">FAB Shadow</div>
+            <div style="font-size:11px;color:#AAA;direction:ltr;">0 4px 18px rgba(0,0,0,0.22)</div>
+            <div style="font-size:11px;color:#888;">FAB, סימני מפה</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ds-subsection">
+      <h3 class="ds-subsection-title">רדיוס פינות</h3>
+      <div class="ds-card">
+        <div style="display:flex;flex-wrap:wrap;gap:20px;align-items:end;">
+          <div style="text-align:center;">
+            <div style="width:60px;height:60px;background:var(--navy-100);border:2px solid var(--navy-500);border-radius:8px;margin:0 auto 8px;"></div>
+            <div style="font-size:12px;font-weight:700;">8px</div>
+            <div style="font-size:11px;color:#AAA;">SM - אייקונים</div>
+          </div>
+          <div style="text-align:center;">
+            <div style="width:60px;height:60px;background:var(--navy-100);border:2px solid var(--navy-500);border-radius:10px;margin:0 auto 8px;"></div>
+            <div style="font-size:12px;font-weight:700;">10px</div>
+            <div style="font-size:11px;color:#AAA;">כפתורי אייקון</div>
+          </div>
+          <div style="text-align:center;">
+            <div style="width:60px;height:60px;background:var(--navy-100);border:2px solid var(--navy-500);border-radius:12px;margin:0 auto 8px;"></div>
+            <div style="font-size:12px;font-weight:700;">12px</div>
+            <div style="font-size:11px;color:#AAA;">MD - pills, meta</div>
+          </div>
+          <div style="text-align:center;">
+            <div style="width:60px;height:60px;background:var(--navy-100);border:2px solid var(--navy-500);border-radius:14px;margin:0 auto 8px;"></div>
+            <div style="font-size:12px;font-weight:700;">14px</div>
+            <div style="font-size:11px;color:#AAA;">LG - כפתורים, inputs</div>
+          </div>
+          <div style="text-align:center;">
+            <div style="width:60px;height:60px;background:var(--navy-100);border:2px solid var(--navy-500);border-radius:18px;margin:0 auto 8px;"></div>
+            <div style="font-size:12px;font-weight:700;">18px</div>
+            <div style="font-size:11px;color:#AAA;">XL - כרטיסים</div>
+          </div>
+          <div style="text-align:center;">
+            <div style="width:60px;height:60px;background:var(--navy-100);border:2px solid var(--navy-500);border-radius:20px;margin:0 auto 8px;"></div>
+            <div style="font-size:12px;font-weight:700;">20px</div>
+            <div style="font-size:11px;color:#AAA;">Pill - טאבים, צ'יפים</div>
+          </div>
+          <div style="text-align:center;">
+            <div style="width:60px;height:60px;background:var(--navy-100);border:2px solid var(--navy-500);border-radius:24px;margin:0 auto 8px;"></div>
+            <div style="font-size:12px;font-weight:700;">24px</div>
+            <div style="font-size:11px;color:#AAA;">Bottom Sheet top</div>
+          </div>
+          <div style="text-align:center;">
+            <div style="width:60px;height:60px;background:var(--navy-100);border:2px solid var(--navy-500);border-radius:50%;margin:0 auto 8px;"></div>
+            <div style="font-size:12px;font-weight:700;">50%</div>
+            <div style="font-size:11px;color:#AAA;">Full - עיגולים</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       5. BUTTONS
+  ═══════════════════════════════════════════ -->
+  <section class="ds-section" id="buttons">
+    <h2 class="ds-section-title"><i class="fas fa-hand-pointer"></i> כפתורים</h2>
+    <p class="ds-section-desc">
+      כל הכפתורים משתמשים ב-<span class="ds-inline-code">font-family: 'Heebo'</span> ויש להם אנימציית scale על לחיצה.
+    </p>
+
+    <!-- Primary Button -->
+    <div class="ds-card">
+      <div class="ds-card-title">כפתור ראשי (Primary)</div>
+      <div class="ds-preview">
+        <div class="ds-flex-col" style="gap:12px;max-width:340px;">
+          <button style="
+            width:100%;padding:15px;
+            background:linear-gradient(135deg,#1B3A6B 0%,#2756A8 100%);
+            color:white;border:none;border-radius:14px;
+            font-size:17px;font-weight:700;font-family:'Heebo',sans-serif;
+            cursor:pointer;box-shadow:0 4px 20px rgba(27,58,107,0.38);
+            display:flex;align-items:center;justify-content:center;gap:8px;">
+            <i class="fas fa-sign-in-alt"></i> כניסה למערכת
+          </button>
+          <button style="
+            width:100%;padding:15px;
+            background:linear-gradient(135deg,#1B3A6B 0%,#2756A8 100%);
+            color:white;border:none;border-radius:14px;
+            font-size:16px;font-weight:700;font-family:'Heebo',sans-serif;
+            cursor:pointer;box-shadow:0 4px 18px rgba(27,58,107,0.38);
+            display:flex;align-items:center;justify-content:center;gap:8px;">
+            <i class="fas fa-diamond-turn-right"></i> נווט לתחנה הקרובה
+          </button>
+        </div>
+      </div>
+      <div class="ds-code">
+        <span class="cmt">/* btn-login / btn-nav */</span><br>
+        <span class="prop">background</span>: <span class="str">linear-gradient(135deg, #1B3A6B 0%, #2756A8 100%)</span>;<br>
+        <span class="prop">border-radius</span>: <span class="val">14px</span>;<br>
+        <span class="prop">font-size</span>: <span class="val">16-17px</span>; <span class="prop">font-weight</span>: <span class="val">700</span>;<br>
+        <span class="prop">box-shadow</span>: <span class="str">0 4px 18-20px rgba(27,58,107,0.38)</span>;<br>
+        <span class="prop">padding</span>: <span class="val">15px</span>;<br>
+        <span class="cmt">/* :active */</span> <span class="prop">transform</span>: <span class="val">scale(0.98)</span>; <span class="prop">opacity</span>: <span class="val">0.9</span>;
+      </div>
+    </div>
+
+    <!-- Secondary / Biometric Button -->
+    <div class="ds-card">
+      <div class="ds-card-title">כפתור משני (Secondary)</div>
+      <div class="ds-preview">
+        <div style="max-width:340px;">
+          <button style="
+            display:flex;align-items:center;justify-content:center;gap:10px;
+            width:100%;padding:13px;
+            border:1.5px solid #E2E8F0;border-radius:14px;
+            background:white;font-size:14px;font-family:'Heebo',sans-serif;
+            color:#444;cursor:pointer;">
+            <i class="fas fa-fingerprint" style="font-size:20px;color:#1B3A6B;"></i>
+            כניסה עם טביעת אצבע / Face ID
+          </button>
+        </div>
+      </div>
+      <div class="ds-code">
+        <span class="cmt">/* btn-biometric */</span><br>
+        <span class="prop">background</span>: <span class="val">white</span>;<br>
+        <span class="prop">border</span>: <span class="val">1.5px solid #E2E8F0</span>;<br>
+        <span class="prop">border-radius</span>: <span class="val">14px</span>;<br>
+        <span class="prop">font-size</span>: <span class="val">14px</span>; <span class="prop">color</span>: <span class="val">#444</span>;<br>
+        <span class="prop">padding</span>: <span class="val">13px</span>;
+      </div>
+    </div>
+
+    <!-- Danger / Logout -->
+    <div class="ds-card">
+      <div class="ds-card-title">כפתור סכנה (Danger)</div>
+      <div class="ds-preview">
+        <div style="max-width:340px;">
+          <button style="
+            width:100%;padding:15px;
+            background:white;border:1.5px solid #E53935;
+            border-radius:14px;color:#E53935;
+            font-size:15px;font-weight:700;font-family:'Heebo',sans-serif;
+            cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;">
+            <i class="fas fa-sign-out-alt"></i> התנתק
+          </button>
+        </div>
+      </div>
+      <div class="ds-code">
+        <span class="cmt">/* btn-logout */</span><br>
+        <span class="prop">background</span>: <span class="val">white</span>;<br>
+        <span class="prop">border</span>: <span class="val">1.5px solid #E53935</span>;<br>
+        <span class="prop">color</span>: <span class="val">#E53935</span>;<br>
+        <span class="prop">border-radius</span>: <span class="val">14px</span>;<br>
+        <span class="cmt">/* :hover */</span> <span class="prop">background</span>: <span class="val">#FFF5F5</span>;
+      </div>
+    </div>
+
+    <!-- Icon Buttons -->
+    <div class="ds-card">
+      <div class="ds-card-title">כפתורי אייקון</div>
+      <div class="ds-preview ds-preview-dark">
+        <div class="ds-flex-row" style="gap:12px;">
+          <button style="
+            width:36px;height:36px;border-radius:10px;
+            background:rgba(255,255,255,0.14);
+            display:flex;align-items:center;justify-content:center;
+            color:white;font-size:15px;cursor:pointer;border:none;">
+            <i class="fas fa-sync-alt"></i>
+          </button>
+          <button style="
+            width:36px;height:36px;border-radius:10px;
+            background:rgba(255,255,255,0.14);
+            display:flex;align-items:center;justify-content:center;
+            color:white;font-size:15px;cursor:pointer;border:none;">
+            <i class="fas fa-cog"></i>
+          </button>
+          <button style="
+            width:36px;height:36px;border-radius:10px;
+            background:rgba(255,255,255,0.14);
+            display:flex;align-items:center;justify-content:center;
+            color:white;font-size:16px;cursor:pointer;border:none;">
+            <i class="fas fa-arrow-right"></i>
+          </button>
+        </div>
+      </div>
+      <div class="ds-code">
+        <span class="cmt">/* icon-btn / btn-back */</span><br>
+        <span class="prop">width</span>: <span class="val">36px</span>; <span class="prop">height</span>: <span class="val">36px</span>;<br>
+        <span class="prop">border-radius</span>: <span class="val">10px</span>;<br>
+        <span class="prop">background</span>: <span class="str">rgba(255,255,255,0.14)</span>;<br>
+        <span class="cmt">/* :hover */</span> <span class="prop">background</span>: <span class="str">rgba(255,255,255,0.24)</span>;
+      </div>
+    </div>
+
+    <!-- FAB -->
+    <div class="ds-card">
+      <div class="ds-card-title">FAB - Floating Action Button</div>
+      <div class="ds-preview">
+        <div style="display:inline-flex;">
+          <button style="
+            width:48px;height:48px;border-radius:50%;
+            background:white;border:none;
+            box-shadow:0 4px 18px rgba(0,0,0,0.22);
+            display:flex;align-items:center;justify-content:center;
+            font-size:20px;color:#1B3A6B;cursor:pointer;">
+            <i class="fas fa-location-arrow"></i>
+          </button>
+        </div>
+      </div>
+      <div class="ds-code">
+        <span class="cmt">/* fab-loc */</span><br>
+        <span class="prop">width</span>: <span class="val">48px</span>; <span class="prop">height</span>: <span class="val">48px</span>; <span class="prop">border-radius</span>: <span class="val">50%</span>;<br>
+        <span class="prop">background</span>: <span class="val">white</span>;<br>
+        <span class="prop">box-shadow</span>: <span class="str">0 4px 18px rgba(0,0,0,0.22)</span>;<br>
+        <span class="prop">color</span>: <span class="val">#1B3A6B</span>;<br>
+        <span class="cmt">/* :active */</span> <span class="prop">transform</span>: <span class="val">scale(0.9)</span>;
+      </div>
+    </div>
+
+    <!-- Close Button -->
+    <div class="ds-card">
+      <div class="ds-card-title">כפתור סגירה</div>
+      <div class="ds-preview">
+        <button style="
+          width:30px;height:30px;border-radius:50%;
+          background:#F5F5F5;border:none;
+          display:flex;align-items:center;justify-content:center;
+          cursor:pointer;font-size:13px;color:#666;">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <div class="ds-code">
+        <span class="cmt">/* bs-x */</span><br>
+        <span class="prop">width</span>: <span class="val">30px</span>; <span class="prop">height</span>: <span class="val">30px</span>; <span class="prop">border-radius</span>: <span class="val">50%</span>;<br>
+        <span class="prop">background</span>: <span class="val">#F5F5F5</span>; <span class="prop">color</span>: <span class="val">#666</span>;
+      </div>
+    </div>
+
+    <!-- Radius Selector Buttons -->
+    <div class="ds-card">
+      <div class="ds-card-title">כפתורי בחירה (Radius Group)</div>
+      <div class="ds-preview">
+        <div style="display:flex;gap:7px;">
+          <button style="padding:5px 12px;border-radius:20px;border:1.5px solid #E0E0E0;background:white;font-size:12px;font-weight:600;font-family:'Heebo',sans-serif;color:#666;cursor:pointer;">1 ק"מ</button>
+          <button style="padding:5px 12px;border-radius:20px;border:1.5px solid #1B3A6B;background:#1B3A6B;font-size:12px;font-weight:600;font-family:'Heebo',sans-serif;color:white;cursor:pointer;">2 ק"מ</button>
+          <button style="padding:5px 12px;border-radius:20px;border:1.5px solid #E0E0E0;background:white;font-size:12px;font-weight:600;font-family:'Heebo',sans-serif;color:#666;cursor:pointer;">5 ק"מ</button>
+        </div>
+      </div>
+      <div class="ds-code">
+        <span class="cmt">/* r-btn */</span><br>
+        <span class="prop">padding</span>: <span class="val">5px 12px</span>; <span class="prop">border-radius</span>: <span class="val">20px</span>;<br>
+        <span class="prop">border</span>: <span class="val">1.5px solid #E0E0E0</span>;<br>
+        <span class="prop">font-size</span>: <span class="val">12px</span>; <span class="prop">font-weight</span>: <span class="val">600</span>;<br>
+        <span class="cmt">/* .on */</span> <span class="prop">background</span>: <span class="val">#1B3A6B</span>; <span class="prop">border-color</span>: <span class="val">#1B3A6B</span>; <span class="prop">color</span>: <span class="val">white</span>;
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       6. INPUTS
+  ═══════════════════════════════════════════ -->
+  <section class="ds-section" id="inputs">
+    <h2 class="ds-section-title"><i class="fas fa-keyboard"></i> שדות קלט</h2>
+    <p class="ds-section-desc">
+      שדות קלט עם אייקון מימין (RTL), רדיוס 14px, ומסגרת שמשתנה ב-focus.
+    </p>
+
+    <div class="ds-card">
+      <div class="ds-card-title">שדה קלט סטנדרטי</div>
+      <div class="ds-preview">
+        <div style="max-width:340px;display:flex;flex-direction:column;gap:14px;">
+          <!-- Default -->
+          <div>
+            <label style="font-size:13px;font-weight:600;color:#444;margin-bottom:6px;display:block;">מספר עובד / שם משתמש</label>
+            <div style="position:relative;">
+              <i class="fas fa-id-badge" style="position:absolute;right:14px;top:50%;transform:translateY(-50%);color:#AAA;font-size:16px;pointer-events:none;"></i>
+              <input type="text" placeholder="לדוגמה: 12345" style="
+                width:100%;padding:14px 46px 14px 14px;
+                border:1.5px solid #E2E8F0;border-radius:14px;
+                font-size:15px;font-family:'Heebo',sans-serif;
+                background:white;color:#1A1A2E;direction:rtl;" value="יוסי_פקח">
+            </div>
+          </div>
+          <!-- Password -->
+          <div>
+            <label style="font-size:13px;font-weight:600;color:#444;margin-bottom:6px;display:block;">סיסמה</label>
+            <div style="position:relative;">
+              <i class="fas fa-lock" style="position:absolute;right:14px;top:50%;transform:translateY(-50%);color:#AAA;font-size:16px;pointer-events:none;"></i>
+              <input type="password" placeholder="הכנס סיסמה" style="
+                width:100%;padding:14px 46px 14px 14px;
+                border:1.5px solid #E2E8F0;border-radius:14px;
+                font-size:15px;font-family:'Heebo',sans-serif;
+                background:white;color:#1A1A2E;direction:rtl;" value="password">
+            </div>
+          </div>
+          <!-- Empty -->
+          <div>
+            <label style="font-size:13px;font-weight:600;color:#444;margin-bottom:6px;display:block;">שדה ריק</label>
+            <div style="position:relative;">
+              <i class="fas fa-search" style="position:absolute;right:14px;top:50%;transform:translateY(-50%);color:#AAA;font-size:16px;pointer-events:none;"></i>
+              <input type="text" placeholder="חיפוש..." style="
+                width:100%;padding:14px 46px 14px 14px;
+                border:1.5px solid #E2E8F0;border-radius:14px;
+                font-size:15px;font-family:'Heebo',sans-serif;
+                background:white;color:#1A1A2E;direction:rtl;">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="ds-code">
+        <span class="cmt">/* form-input */</span><br>
+        <span class="prop">padding</span>: <span class="val">14px 46px 14px 14px</span>; <span class="cmt">/* extra right for icon */</span><br>
+        <span class="prop">border</span>: <span class="val">1.5px solid #E2E8F0</span>;<br>
+        <span class="prop">border-radius</span>: <span class="val">14px</span>;<br>
+        <span class="prop">font-size</span>: <span class="val">15px</span>; <span class="prop">direction</span>: <span class="val">rtl</span>;<br>
+        <br>
+        <span class="cmt">/* :focus */</span><br>
+        <span class="prop">border-color</span>: <span class="val">#1B3A6B</span>;<br>
+        <span class="prop">box-shadow</span>: <span class="str">0 0 0 3px rgba(27,58,107,0.1)</span>;<br>
+        <br>
+        <span class="cmt">/* ::placeholder */</span> <span class="prop">color</span>: <span class="val">#C0C0C0</span>;<br>
+        <br>
+        <span class="cmt">/* Icon positioning (RTL - right side) */</span><br>
+        <span class="prop">position</span>: <span class="val">absolute</span>; <span class="prop">right</span>: <span class="val">14px</span>; <span class="prop">top</span>: <span class="val">50%</span>;<br>
+        <span class="prop">color</span>: <span class="val">#AAA</span>; <span class="prop">font-size</span>: <span class="val">16px</span>;
+      </div>
+    </div>
+
+    <div class="ds-note">
+      <i class="fas fa-info-circle"></i>
+      <div>
+        <strong>RTL Input:</strong> ב-RTL, ה-padding הגדול הוא מימין (עבור האייקון), לא משמאל.
+        האייקון ממוקם ב-<span class="ds-inline-code">right: 14px</span> ולא left.
+      </div>
+    </div>
+
+    <!-- Form Label -->
+    <div class="ds-card">
+      <div class="ds-card-title">תוויות טופס</div>
+      <table class="ds-table">
+        <thead>
+          <tr><th>אלמנט</th><th>סגנון</th><th>דוגמה</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Form Label</td>
+            <td><code>13px / 600 / #444</code></td>
+            <td><span style="font-size:13px;font-weight:600;color:#444;">מספר עובד / שם משתמש</span></td>
+          </tr>
+          <tr>
+            <td>Placeholder</td>
+            <td><code>15px / 400 / #C0C0C0</code></td>
+            <td><span style="font-size:15px;color:#C0C0C0;">לדוגמה: 12345</span></td>
+          </tr>
+          <tr>
+            <td>Input Value</td>
+            <td><code>15px / 400 / #1A1A2E</code></td>
+            <td><span style="font-size:15px;color:#1A1A2E;">יוסי_פקח</span></td>
+          </tr>
+          <tr>
+            <td>Helper Link</td>
+            <td><code>13px / 400 / #1B3A6B</code></td>
+            <td><span style="font-size:13px;color:#1B3A6B;cursor:pointer;">שכחתי סיסמה</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Divider -->
+    <div class="ds-card">
+      <div class="ds-card-title">מפריד "או"</div>
+      <div class="ds-preview">
+        <div style="max-width:340px;">
+          <div style="display:flex;align-items:center;gap:12px;color:#C0C0C0;font-size:13px;">
+            <div style="flex:1;height:1px;background:#E8E8E8;"></div>
+            או
+            <div style="flex:1;height:1px;background:#E8E8E8;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       7. CARDS
+  ═══════════════════════════════════════════ -->
+  <section class="ds-section" id="cards">
+    <h2 class="ds-section-title"><i class="fas fa-square"></i> כרטיסים</h2>
+    <p class="ds-section-desc">
+      כרטיסים הם הקונטיינרים הראשיים לתוכן. רקע לבן, רדיוס 18px, צל עדין.
+    </p>
+
+    <!-- Settings Card -->
+    <div class="ds-card">
+      <div class="ds-card-title">כרטיס הגדרות</div>
+      <div class="ds-preview">
+        <div style="max-width:360px;background:white;border-radius:18px;overflow:hidden;box-shadow:0 2px 10px rgba(0,0,0,0.06);">
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:14px 16px;border-bottom:1px solid #F5F5F5;">
+            <div style="display:flex;align-items:center;gap:11px;font-size:15px;color:#1A1A2E;">
+              <div style="width:32px;height:32px;border-radius:8px;background:#1B3A6B;display:flex;align-items:center;justify-content:center;font-size:14px;color:white;">
+                <i class="fas fa-circle-notch"></i>
+              </div>
+              רדיוס תצוגה
+            </div>
+            <div style="display:flex;gap:7px;">
+              <button style="padding:5px 12px;border-radius:20px;border:1.5px solid #E0E0E0;background:white;font-size:12px;font-weight:600;font-family:'Heebo',sans-serif;color:#666;cursor:pointer;">1 ק"מ</button>
+              <button style="padding:5px 12px;border-radius:20px;border:1.5px solid #1B3A6B;background:#1B3A6B;font-size:12px;font-weight:600;font-family:'Heebo',sans-serif;color:white;cursor:pointer;">2 ק"מ</button>
+              <button style="padding:5px 12px;border-radius:20px;border:1.5px solid #E0E0E0;background:white;font-size:12px;font-weight:600;font-family:'Heebo',sans-serif;color:#666;cursor:pointer;">5 ק"מ</button>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:14px 16px;border-bottom:1px solid #F5F5F5;">
+            <div style="display:flex;align-items:center;gap:11px;font-size:15px;color:#1A1A2E;">
+              <div style="width:32px;height:32px;border-radius:8px;background:#FB8C00;display:flex;align-items:center;justify-content:center;font-size:14px;color:white;">
+                <i class="fas fa-bell"></i>
+              </div>
+              התראות Push
+            </div>
+            <div style="width:44px;height:26px;background:#43A047;border-radius:13px;position:relative;cursor:pointer;">
+              <div style="position:absolute;width:20px;height:20px;background:white;border-radius:50%;top:3px;right:3px;box-shadow:0 1px 4px rgba(0,0,0,0.2);"></div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:14px 16px;">
+            <div style="display:flex;align-items:center;gap:11px;font-size:15px;color:#1A1A2E;">
+              <div style="width:32px;height:32px;border-radius:8px;background:#00838F;display:flex;align-items:center;justify-content:center;font-size:14px;color:white;">
+                <i class="fas fa-sync-alt"></i>
+              </div>
+              רענון אוטומטי (30 שנ')
+            </div>
+            <div style="width:44px;height:26px;background:#DDD;border-radius:13px;position:relative;cursor:pointer;">
+              <div style="position:absolute;width:20px;height:20px;background:white;border-radius:50%;top:3px;left:3px;box-shadow:0 1px 4px rgba(0,0,0,0.2);"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="ds-code">
+        <span class="cmt">/* settings-card2 */</span><br>
+        <span class="prop">background</span>: <span class="val">white</span>;<br>
+        <span class="prop">border-radius</span>: <span class="val">18px</span>;<br>
+        <span class="prop">box-shadow</span>: <span class="str">0 2px 10px rgba(0,0,0,0.06)</span>;<br>
+        <span class="prop">overflow</span>: <span class="val">hidden</span>;<br>
+        <br>
+        <span class="cmt">/* s-row (each row) */</span><br>
+        <span class="prop">padding</span>: <span class="val">14px 16px</span>;<br>
+        <span class="prop">border-bottom</span>: <span class="val">1px solid #F5F5F5</span>; <span class="cmt">/* except last */</span>
+      </div>
+    </div>
+
+    <!-- User Card -->
+    <div class="ds-card">
+      <div class="ds-card-title">כרטיס משתמש</div>
+      <div class="ds-preview">
+        <div style="max-width:360px;background:white;border-radius:18px;padding:16px;display:flex;align-items:center;gap:14px;box-shadow:0 2px 10px rgba(0,0,0,0.06);">
+          <div style="width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,#1B3A6B,#2756A8);display:flex;align-items:center;justify-content:center;color:white;font-size:22px;font-weight:800;flex-shrink:0;">י</div>
+          <div>
+            <div style="font-size:16px;font-weight:700;color:#1A1A2E;">יוסי כהן</div>
+            <div style="font-size:13px;color:#888;margin-top:2px;">מ.ע. 12345 &middot; פקח שטח</div>
+            <div style="font-size:12px;color:#1B3A6B;font-weight:600;margin-top:3px;">אזור תל אביב מרכז</div>
+          </div>
+        </div>
+      </div>
+      <div class="ds-code">
+        <span class="cmt">/* user-card */</span><br>
+        <span class="prop">border-radius</span>: <span class="val">18px</span>; <span class="prop">padding</span>: <span class="val">16px</span>;<br>
+        <span class="prop">gap</span>: <span class="val">14px</span>; <span class="prop">display</span>: <span class="val">flex</span>;<br>
+        <br>
+        <span class="cmt">/* user-av (avatar) */</span><br>
+        <span class="prop">width/height</span>: <span class="val">52px</span>; <span class="prop">border-radius</span>: <span class="val">50%</span>;<br>
+        <span class="prop">background</span>: <span class="str">linear-gradient(135deg, #1B3A6B, #2756A8)</span>;<br>
+        <span class="prop">font-size</span>: <span class="val">22px</span>; <span class="prop">font-weight</span>: <span class="val">800</span>;
+      </div>
+    </div>
+
+    <!-- Evasion Card -->
+    <div class="ds-card">
+      <div class="ds-card-title">כרטיס אי-תיקוף (Evasion Card)</div>
+      <div class="ds-preview">
+        <div style="display:flex;flex-direction:column;gap:12px;max-width:340px;">
+          <!-- Red -->
+          <div style="border-radius:16px;padding:14px 16px;display:flex;align-items:center;justify-content:space-between;background:#FFEBEE;">
+            <div>
+              <div style="font-size:11px;color:#AAA;margin-bottom:2px;">% אי-תיקוף (ממוצע קו)</div>
+              <div style="font-size:36px;font-weight:900;line-height:1;color:#E53935;">47%</div>
+              <div style="font-size:11px;color:#AAA;margin-top:3px;">נתונים מ-30 הימים האחרונים</div>
+            </div>
+            <div style="padding:7px 14px;border-radius:20px;font-size:12px;font-weight:700;display:flex;align-items:center;gap:5px;color:white;background:#E53935;">
+              <i class="fas fa-exclamation-circle"></i> עדיפות גבוהה
+            </div>
+          </div>
+          <!-- Orange -->
+          <div style="border-radius:16px;padding:14px 16px;display:flex;align-items:center;justify-content:space-between;background:#FFF3E0;">
+            <div>
+              <div style="font-size:11px;color:#AAA;margin-bottom:2px;">% אי-תיקוף (ממוצע קו)</div>
+              <div style="font-size:36px;font-weight:900;line-height:1;color:#FB8C00;">28%</div>
+              <div style="font-size:11px;color:#AAA;margin-top:3px;">נתונים מ-30 הימים האחרונים</div>
+            </div>
+            <div style="padding:7px 14px;border-radius:20px;font-size:12px;font-weight:700;display:flex;align-items:center;gap:5px;color:white;background:#FB8C00;">
+              <i class="fas fa-exclamation-circle"></i> עדיפות בינונית
+            </div>
+          </div>
+          <!-- Green -->
+          <div style="border-radius:16px;padding:14px 16px;display:flex;align-items:center;justify-content:space-between;background:#E8F5E9;">
+            <div>
+              <div style="font-size:11px;color:#AAA;margin-bottom:2px;">% אי-תיקוף (ממוצע קו)</div>
+              <div style="font-size:36px;font-weight:900;line-height:1;color:#43A047;">8%</div>
+              <div style="font-size:11px;color:#AAA;margin-top:3px;">נתונים מ-30 הימים האחרונים</div>
+            </div>
+            <div style="padding:7px 14px;border-radius:20px;font-size:12px;font-weight:700;display:flex;align-items:center;gap:5px;color:white;background:#43A047;">
+              <i class="fas fa-exclamation-circle"></i> עדיפות נמוכה
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="ds-code">
+        <span class="cmt">/* bs-evasion-card */</span><br>
+        <span class="prop">border-radius</span>: <span class="val">16px</span>; <span class="prop">padding</span>: <span class="val">14px 16px</span>;<br>
+        <span class="prop">display</span>: <span class="val">flex</span>; <span class="prop">justify-content</span>: <span class="val">space-between</span>;<br>
+        <br>
+        <span class="cmt">/* Background variants */</span><br>
+        <span class="cls">.evc-red</span>    { <span class="prop">background</span>: <span class="val">#FFEBEE</span> }<br>
+        <span class="cls">.evc-orange</span> { <span class="prop">background</span>: <span class="val">#FFF3E0</span> }<br>
+        <span class="cls">.evc-green</span>  { <span class="prop">background</span>: <span class="val">#E8F5E9</span> }
+      </div>
+    </div>
+
+    <!-- Meta Boxes -->
+    <div class="ds-card">
+      <div class="ds-card-title">תיבות מטא-דאטה</div>
+      <div class="ds-preview">
+        <div style="display:flex;gap:10px;max-width:340px;">
+          <div style="flex:1;background:#F5F7FA;border-radius:12px;padding:12px 14px;">
+            <div style="font-size:11px;color:#AAA;margin-bottom:4px;">מרחק</div>
+            <div style="font-size:17px;font-weight:700;color:#1A1A2E;">210 <span style="font-size:12px;color:#AAA;font-weight:400;">מ'</span></div>
+          </div>
+          <div style="flex:1;background:#F5F7FA;border-radius:12px;padding:12px 14px;">
+            <div style="font-size:11px;color:#AAA;margin-bottom:4px;">זמן הגעה משוער</div>
+            <div style="font-size:17px;font-weight:700;color:#1A1A2E;">1 <span style="font-size:12px;color:#AAA;font-weight:400;">דק'</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="ds-code">
+        <span class="cmt">/* bs-meta-box */</span><br>
+        <span class="prop">flex</span>: <span class="val">1</span>; <span class="prop">background</span>: <span class="val">#F5F7FA</span>;<br>
+        <span class="prop">border-radius</span>: <span class="val">12px</span>; <span class="prop">padding</span>: <span class="val">12px 14px</span>;
+      </div>
+    </div>
+
+    <!-- Stop Pill -->
+    <div class="ds-card">
+      <div class="ds-card-title">תחנה הבאה (Stop Pill)</div>
+      <div class="ds-preview">
+        <div style="max-width:340px;display:flex;align-items:center;gap:10px;background:#F5F7FA;padding:10px 14px;border-radius:12px;">
+          <i class="fas fa-map-marker-alt" style="color:#AAA;font-size:14px;"></i>
+          <div>
+            <div style="font-size:11px;color:#AAA;">תחנה הבאה</div>
+            <div style="font-size:14px;font-weight:600;color:#1A1A2E;">כיכר דיזנגוף</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       8. BADGES & CHIPS
+  ═══════════════════════════════════════════ -->
+  <section class="ds-section" id="badges">
+    <h2 class="ds-section-title"><i class="fas fa-certificate"></i> תגיות וצ'יפים</h2>
+
+    <!-- Alert Pill -->
+    <div class="ds-card">
+      <div class="ds-card-title">גלולת התראה (Alert Pill)</div>
+      <div class="ds-preview ds-preview-dark">
+        <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+          <div style="display:flex;align-items:center;gap:7px;background:#E53935;color:white;font-size:13px;font-weight:700;padding:5px 12px;border-radius:20px;">
+            <i class="fas fa-exclamation-circle"></i>
+            3 אדומים
+          </div>
+          <span style="color:rgba(255,255,255,0.6);font-size:12px;">בטווח 2 ק"מ</span>
+        </div>
+      </div>
+      <div class="ds-code">
+        <span class="cmt">/* red-alert-pill */</span><br>
+        <span class="prop">background</span>: <span class="val">#E53935</span>; <span class="prop">color</span>: <span class="val">white</span>;<br>
+        <span class="prop">padding</span>: <span class="val">5px 12px</span>; <span class="prop">border-radius</span>: <span class="val">20px</span>;<br>
+        <span class="prop">font-size</span>: <span class="val">13px</span>; <span class="prop">font-weight</span>: <span class="val">700</span>;<br>
+        <span class="prop">animation</span>: <span class="val">pulseAlert 2.4s ease-in-out infinite</span>;
+      </div>
+    </div>
+
+    <!-- Priority Chips -->
+    <div class="ds-card">
+      <div class="ds-card-title">צ'יפי עדיפות (Priority Chips)</div>
+      <div class="ds-preview">
+        <div class="ds-flex-row" style="gap:10px;">
+          <div style="padding:7px 14px;border-radius:20px;font-size:12px;font-weight:700;display:flex;align-items:center;gap:5px;color:white;background:#E53935;">
+            <i class="fas fa-exclamation-circle"></i> עדיפות גבוהה
+          </div>
+          <div style="padding:7px 14px;border-radius:20px;font-size:12px;font-weight:700;display:flex;align-items:center;gap:5px;color:white;background:#FB8C00;">
+            <i class="fas fa-exclamation-circle"></i> עדיפות בינונית
+          </div>
+          <div style="padding:7px 14px;border-radius:20px;font-size:12px;font-weight:700;display:flex;align-items:center;gap:5px;color:white;background:#43A047;">
+            <i class="fas fa-exclamation-circle"></i> עדיפות נמוכה
+          </div>
+        </div>
+      </div>
+      <div class="ds-code">
+        <span class="cmt">/* bs-priority-chip */</span><br>
+        <span class="prop">padding</span>: <span class="val">7px 14px</span>; <span class="prop">border-radius</span>: <span class="val">20px</span>;<br>
+        <span class="prop">font-size</span>: <span class="val">12px</span>; <span class="prop">font-weight</span>: <span class="val">700</span>;<br>
+        <br>
+        <span class="cls">.chip-red</span>    { <span class="prop">background</span>: <span class="val">#E53935</span> }<br>
+        <span class="cls">.chip-orange</span> { <span class="prop">background</span>: <span class="val">#FB8C00</span> }<br>
+        <span class="cls">.chip-green</span>  { <span class="prop">background</span>: <span class="val">#43A047</span> }
+      </div>
+    </div>
+
+    <!-- Operator Chips -->
+    <div class="ds-card">
+      <div class="ds-card-title">צ'יפי מפעילים (Operator Chips)</div>
+      <div class="ds-preview">
+        <div style="display:flex;flex-wrap:wrap;gap:8px;">
+          <button style="padding:6px 14px;border-radius:20px;border:1.5px solid #1B3A6B;background:#EEF2FF;font-size:13px;font-weight:700;color:#1B3A6B;cursor:pointer;font-family:'Heebo',sans-serif;">הכל</button>
+          <button style="padding:6px 14px;border-radius:20px;border:1.5px solid #1B3A6B;background:#EEF2FF;font-size:13px;font-weight:700;color:#1B3A6B;cursor:pointer;font-family:'Heebo',sans-serif;">דן</button>
+          <button style="padding:6px 14px;border-radius:20px;border:1.5px solid #1B3A6B;background:#EEF2FF;font-size:13px;font-weight:700;color:#1B3A6B;cursor:pointer;font-family:'Heebo',sans-serif;">אגד</button>
+          <button style="padding:6px 14px;border-radius:20px;border:1.5px solid #E0E0E0;background:white;font-size:13px;font-weight:500;color:#555;cursor:pointer;font-family:'Heebo',sans-serif;">מטרופולין</button>
+          <button style="padding:6px 14px;border-radius:20px;border:1.5px solid #E0E0E0;background:white;font-size:13px;font-weight:500;color:#555;cursor:pointer;font-family:'Heebo',sans-serif;">קווים</button>
+          <button style="padding:6px 14px;border-radius:20px;border:1.5px solid #E0E0E0;background:white;font-size:13px;font-weight:500;color:#555;cursor:pointer;font-family:'Heebo',sans-serif;">אלקטרה אפיקים</button>
+        </div>
+      </div>
+      <div class="ds-code">
+        <span class="cmt">/* op-chip (default) */</span><br>
+        <span class="prop">padding</span>: <span class="val">6px 14px</span>; <span class="prop">border-radius</span>: <span class="val">20px</span>;<br>
+        <span class="prop">border</span>: <span class="val">1.5px solid #E0E0E0</span>;<br>
+        <span class="prop">font-size</span>: <span class="val">13px</span>; <span class="prop">font-weight</span>: <span class="val">500</span>; <span class="prop">color</span>: <span class="val">#555</span>;<br>
+        <br>
+        <span class="cmt">/* op-chip.on (active) */</span><br>
+        <span class="prop">background</span>: <span class="val">#EEF2FF</span>; <span class="prop">border-color</span>: <span class="val">#1B3A6B</span>;<br>
+        <span class="prop">color</span>: <span class="val">#1B3A6B</span>; <span class="prop">font-weight</span>: <span class="val">700</span>;
+      </div>
+    </div>
+
+    <!-- Filter Tabs -->
+    <div class="ds-card">
+      <div class="ds-card-title">טאבי פילטר (Filter Tabs)</div>
+      <div class="ds-preview ds-preview-dark">
+        <div style="display:flex;gap:7px;flex-wrap:wrap;">
+          <button style="padding:5px 13px;border-radius:20px;border:none;font-size:12px;font-weight:700;font-family:'Heebo',sans-serif;cursor:pointer;background:white;color:#1B3A6B;">הכל (8)</button>
+          <button style="padding:5px 13px;border-radius:20px;border:none;font-size:12px;font-weight:700;font-family:'Heebo',sans-serif;cursor:pointer;background:#E53935;color:white;">אדום (3)</button>
+          <button style="padding:5px 13px;border-radius:20px;border:none;font-size:12px;font-weight:700;font-family:'Heebo',sans-serif;cursor:pointer;background:#FB8C00;color:white;">כתום (3)</button>
+          <button style="padding:5px 13px;border-radius:20px;border:none;font-size:12px;font-weight:700;font-family:'Heebo',sans-serif;cursor:pointer;background:#43A047;color:white;">ירוק (2)</button>
+        </div>
+      </div>
+      <div style="margin-top:12px;">
+        <div class="ds-preview ds-preview-dark">
+          <div style="display:flex;gap:7px;flex-wrap:wrap;">
+            <button style="padding:5px 13px;border-radius:20px;border:none;font-size:12px;font-weight:700;font-family:'Heebo',sans-serif;cursor:pointer;color:rgba(255,255,255,0.65);background:rgba(255,255,255,0.1);">הכל (8)</button>
+            <button style="padding:5px 13px;border-radius:20px;border:none;font-size:12px;font-weight:700;font-family:'Heebo',sans-serif;cursor:pointer;color:rgba(255,255,255,0.65);background:rgba(255,255,255,0.1);">אדום (3)</button>
+            <button style="padding:5px 13px;border-radius:20px;border:none;font-size:12px;font-weight:700;font-family:'Heebo',sans-serif;cursor:pointer;color:rgba(255,255,255,0.65);background:rgba(255,255,255,0.1);">כתום (3)</button>
+            <button style="padding:5px 13px;border-radius:20px;border:none;font-size:12px;font-weight:700;font-family:'Heebo',sans-serif;cursor:pointer;color:rgba(255,255,255,0.65);background:rgba(255,255,255,0.1);">ירוק (2)</button>
+          </div>
+        </div>
+        <div style="font-size:12px;color:#888;margin-top:8px;">מצב לא פעיל (Inactive)</div>
+      </div>
+      <div class="ds-code" style="margin-top:16px;">
+        <span class="cmt">/* ftab (inactive) */</span><br>
+        <span class="prop">color</span>: <span class="str">rgba(255,255,255,0.65)</span>;<br>
+        <span class="prop">background</span>: <span class="str">rgba(255,255,255,0.1)</span>;<br>
+        <br>
+        <span class="cmt">/* Active variants */</span><br>
+        <span class="cls">.active-all</span>    { <span class="prop">background</span>: <span class="val">white</span>; <span class="prop">color</span>: <span class="val">#1B3A6B</span> }<br>
+        <span class="cls">.active-red</span>    { <span class="prop">background</span>: <span class="val">#E53935</span>; <span class="prop">color</span>: <span class="val">white</span> }<br>
+        <span class="cls">.active-orange</span> { <span class="prop">background</span>: <span class="val">#FB8C00</span>; <span class="prop">color</span>: <span class="val">white</span> }<br>
+        <span class="cls">.active-green</span>  { <span class="prop">background</span>: <span class="val">#43A047</span>; <span class="prop">color</span>: <span class="val">white</span> }
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       9. NAVIGATION
+  ═══════════════════════════════════════════ -->
+  <section class="ds-section" id="nav">
+    <h2 class="ds-section-title"><i class="fas fa-bars"></i> ניווט</h2>
+
+    <!-- Map Header -->
+    <div class="ds-card">
+      <div class="ds-card-title">Header - מסך מפה</div>
+      <div class="ds-preview" style="padding:0;overflow:hidden;border-radius:12px;">
+        <div style="background:#1B3A6B;padding:0 16px;">
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:11px 0 8px;">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <div style="display:flex;align-items:center;gap:7px;background:#E53935;color:white;font-size:13px;font-weight:700;padding:5px 12px;border-radius:20px;">
+                <i class="fas fa-exclamation-circle"></i> 3 אדומים
+              </div>
+              <span style="color:rgba(255,255,255,0.6);font-size:12px;">בטווח 2 ק"מ</span>
+            </div>
+            <div style="display:flex;gap:8px;">
+              <button style="width:36px;height:36px;border-radius:10px;background:rgba(255,255,255,0.14);display:flex;align-items:center;justify-content:center;color:white;font-size:15px;cursor:pointer;border:none;">
+                <i class="fas fa-sync-alt"></i>
+              </button>
+              <button style="width:36px;height:36px;border-radius:10px;background:rgba(255,255,255,0.14);display:flex;align-items:center;justify-content:center;color:white;font-size:15px;cursor:pointer;border:none;">
+                <i class="fas fa-cog"></i>
+              </button>
+            </div>
+          </div>
+          <div style="display:flex;gap:7px;padding:8px 0 12px;overflow-x:auto;">
+            <button style="flex-shrink:0;padding:5px 13px;border-radius:20px;border:none;font-size:12px;font-weight:700;font-family:'Heebo',sans-serif;cursor:pointer;background:white;color:#1B3A6B;">הכל (8)</button>
+            <button style="flex-shrink:0;padding:5px 13px;border-radius:20px;border:none;font-size:12px;font-weight:700;font-family:'Heebo',sans-serif;cursor:pointer;color:rgba(255,255,255,0.65);background:rgba(255,255,255,0.1);">אדום (3)</button>
+            <button style="flex-shrink:0;padding:5px 13px;border-radius:20px;border:none;font-size:12px;font-weight:700;font-family:'Heebo',sans-serif;cursor:pointer;color:rgba(255,255,255,0.65);background:rgba(255,255,255,0.1);">כתום (3)</button>
+            <button style="flex-shrink:0;padding:5px 13px;border-radius:20px;border:none;font-size:12px;font-weight:700;font-family:'Heebo',sans-serif;cursor:pointer;color:rgba(255,255,255,0.65);background:rgba(255,255,255,0.1);">ירוק (2)</button>
+          </div>
+        </div>
+      </div>
+      <div class="ds-code">
+        <span class="cmt">/* map-header */</span><br>
+        <span class="prop">background</span>: <span class="val">#1B3A6B</span>;<br>
+        <span class="prop">padding</span>: <span class="val">0 16px</span>;<br>
+        <span class="prop">z-index</span>: <span class="val">300</span>;<br>
+        <br>
+        <span class="cmt">/* Structure: */</span><br>
+        <span class="cmt">/* Row 1: Alert pill + icon buttons */</span><br>
+        <span class="cmt">/* Row 2: Filter tabs (horizontally scrollable) */</span>
+      </div>
+    </div>
+
+    <!-- Settings Header -->
+    <div class="ds-card">
+      <div class="ds-card-title">Header - מסך הגדרות</div>
+      <div class="ds-preview" style="padding:0;overflow:hidden;border-radius:12px;">
+        <div style="background:#1B3A6B;padding:12px 16px;display:flex;align-items:center;gap:12px;">
+          <button style="width:36px;height:36px;border-radius:10px;background:rgba(255,255,255,0.14);display:flex;align-items:center;justify-content:center;color:white;font-size:16px;cursor:pointer;border:none;">
+            <i class="fas fa-arrow-right"></i>
+          </button>
+          <span style="color:white;font-size:17px;font-weight:700;">הגדרות</span>
+        </div>
+      </div>
+      <div class="ds-note">
+        <i class="fas fa-info-circle"></i>
+        <div>
+          <strong>RTL:</strong> כפתור החזרה ב-RTL משתמש בחץ ימינה (<span class="ds-inline-code">fa-arrow-right</span>) כי הניווט "אחורה" הוא ימינה.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       10. LISTS
+  ═══════════════════════════════════════════ -->
+  <section class="ds-section" id="lists">
+    <h2 class="ds-section-title"><i class="fas fa-list"></i> רשימות</h2>
+
+    <!-- Settings Rows -->
+    <div class="ds-card">
+      <div class="ds-card-title">שורות הגדרות (Settings Rows)</div>
+      <div class="ds-preview">
+        <div style="max-width:360px;background:white;border-radius:18px;overflow:hidden;box-shadow:0 2px 10px rgba(0,0,0,0.06);">
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:14px 16px;border-bottom:1px solid #F5F5F5;">
+            <div style="display:flex;align-items:center;gap:11px;font-size:15px;color:#1A1A2E;">
+              <div style="width:32px;height:32px;border-radius:8px;background:#90A4AE;display:flex;align-items:center;justify-content:center;font-size:14px;color:white;">
+                <i class="fas fa-info"></i>
+              </div>
+              גרסת אפליקציה
+            </div>
+            <span style="color:#AAA;font-size:14px;">1.0.0 (Pilot)</span>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:14px 16px;border-bottom:1px solid #F5F5F5;">
+            <div style="display:flex;align-items:center;gap:11px;font-size:15px;color:#1A1A2E;">
+              <div style="width:32px;height:32px;border-radius:8px;background:#90A4AE;display:flex;align-items:center;justify-content:center;font-size:14px;color:white;">
+                <i class="fas fa-server"></i>
+              </div>
+              עדכון אחרון
+            </div>
+            <span style="color:#AAA;font-size:14px;">לפני 7 דק'</span>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:14px 16px;">
+            <div style="display:flex;align-items:center;gap:11px;font-size:15px;color:#1A1A2E;">
+              <div style="width:32px;height:32px;border-radius:8px;background:#90A4AE;display:flex;align-items:center;justify-content:center;font-size:14px;color:white;">
+                <i class="fas fa-database"></i>
+              </div>
+              מקור נתונים
+            </div>
+            <span style="color:#AAA;font-size:14px;">APC + AFC</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section Title -->
+      <div style="margin-top:20px;">
+        <div class="ds-card-title">כותרת סקשן</div>
+        <div class="ds-preview">
+          <div style="font-size:11px;font-weight:700;color:#AAA;letter-spacing:0.8px;text-transform:uppercase;">תצוגה</div>
+        </div>
+        <div class="ds-code">
+          <span class="cmt">/* sec-title */</span><br>
+          <span class="prop">font-size</span>: <span class="val">11px</span>; <span class="prop">font-weight</span>: <span class="val">700</span>;<br>
+          <span class="prop">color</span>: <span class="val">#AAA</span>; <span class="prop">letter-spacing</span>: <span class="val">0.8px</span>;<br>
+          <span class="prop">text-transform</span>: <span class="val">uppercase</span>;
+        </div>
+      </div>
+    </div>
+
+    <!-- Settings Icon Colors -->
+    <div class="ds-card">
+      <div class="ds-card-title">צבעי אייקוני הגדרות</div>
+      <table class="ds-table">
+        <thead>
+          <tr><th>Class</th><th>צבע</th><th>שימוש</th><th>תצוגה</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>.si-blue</code></td>
+            <td><code>#1B3A6B</code></td>
+            <td>תצוגה, רדיוס</td>
+            <td><div style="width:32px;height:32px;border-radius:8px;background:#1B3A6B;display:flex;align-items:center;justify-content:center;font-size:14px;color:white;"><i class="fas fa-circle-notch"></i></div></td>
+          </tr>
+          <tr>
+            <td><code>.si-orange</code></td>
+            <td><code>#FB8C00</code></td>
+            <td>התראות</td>
+            <td><div style="width:32px;height:32px;border-radius:8px;background:#FB8C00;display:flex;align-items:center;justify-content:center;font-size:14px;color:white;"><i class="fas fa-bell"></i></div></td>
+          </tr>
+          <tr>
+            <td><code>.si-teal</code></td>
+            <td><code>#00838F</code></td>
+            <td>רענון, סנכרון</td>
+            <td><div style="width:32px;height:32px;border-radius:8px;background:#00838F;display:flex;align-items:center;justify-content:center;font-size:14px;color:white;"><i class="fas fa-sync-alt"></i></div></td>
+          </tr>
+          <tr>
+            <td><code>.si-gray</code></td>
+            <td><code>#90A4AE</code></td>
+            <td>מידע כללי</td>
+            <td><div style="width:32px;height:32px;border-radius:8px;background:#90A4AE;display:flex;align-items:center;justify-content:center;font-size:14px;color:white;"><i class="fas fa-info"></i></div></td>
+          </tr>
+          <tr>
+            <td><code>.si-red</code></td>
+            <td><code>#E53935</code></td>
+            <td>פעולות מסוכנות</td>
+            <td><div style="width:32px;height:32px;border-radius:8px;background:#E53935;display:flex;align-items:center;justify-content:center;font-size:14px;color:white;"><i class="fas fa-exclamation-triangle"></i></div></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       11. TOGGLES
+  ═══════════════════════════════════════════ -->
+  <section class="ds-section" id="toggles">
+    <h2 class="ds-section-title"><i class="fas fa-toggle-on"></i> מתגים</h2>
+
+    <div class="ds-card">
+      <div class="ds-card-title">Toggle Switch</div>
+      <div class="ds-preview">
+        <div style="display:flex;align-items:center;gap:24px;">
+          <div style="text-align:center;">
+            <div style="width:44px;height:26px;background:#43A047;border-radius:13px;position:relative;cursor:pointer;margin:0 auto 8px;">
+              <div style="position:absolute;width:20px;height:20px;background:white;border-radius:50%;top:3px;right:3px;box-shadow:0 1px 4px rgba(0,0,0,0.2);"></div>
+            </div>
+            <div style="font-size:12px;font-weight:600;color:#43A047;">ON</div>
+          </div>
+          <div style="text-align:center;">
+            <div style="width:44px;height:26px;background:#DDD;border-radius:13px;position:relative;cursor:pointer;margin:0 auto 8px;">
+              <div style="position:absolute;width:20px;height:20px;background:white;border-radius:50%;top:3px;left:3px;box-shadow:0 1px 4px rgba(0,0,0,0.2);"></div>
+            </div>
+            <div style="font-size:12px;font-weight:600;color:#AAA;">OFF</div>
+          </div>
+        </div>
+      </div>
+      <div class="ds-code">
+        <span class="cmt">/* toggle (ON state) */</span><br>
+        <span class="prop">width</span>: <span class="val">44px</span>; <span class="prop">height</span>: <span class="val">26px</span>;<br>
+        <span class="prop">background</span>: <span class="val">#43A047</span>; <span class="prop">border-radius</span>: <span class="val">13px</span>;<br>
+        <span class="cmt">/* knob: 20x20px, right: 3px (RTL) */</span><br>
+        <br>
+        <span class="cmt">/* toggle.off (OFF state) */</span><br>
+        <span class="prop">background</span>: <span class="val">#DDDDDD</span>;<br>
+        <span class="cmt">/* knob moves to: right: 21px (RTL) */</span>
+      </div>
+      <div class="ds-note">
+        <i class="fas fa-info-circle"></i>
+        <div>
+          <strong>RTL:</strong> ב-RTL הכדור של ה-toggle נמצא מימין כשהוא ON ומשמאל כשהוא OFF. זה היפוך ממקרה LTR.
+          ב-CSS זה מתבטא ב-<span class="ds-inline-code">right: 3px</span> (ON) ו-<span class="ds-inline-code">right: 21px</span> (OFF).
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       12. BOTTOM SHEET
+  ═══════════════════════════════════════════ -->
+  <section class="ds-section" id="bottomsheet">
+    <h2 class="ds-section-title"><i class="fas fa-window-maximize"></i> Bottom Sheet</h2>
+    <p class="ds-section-desc">
+      Bottom Sheet עולה מלמטה עם אנימציה. כולל Drag handle, כותרת עם מספר קו, ותוכן מידע.
+    </p>
+
+    <div class="ds-card">
+      <div class="ds-card-title">מבנה Bottom Sheet</div>
+      <div class="ds-preview">
+        <div style="max-width:380px;background:white;border-radius:24px 24px 0 0;box-shadow:0 -8px 32px rgba(0,0,0,0.18);overflow:hidden;">
+          <!-- Drag handle -->
+          <div style="width:40px;height:4px;background:#E0E0E0;border-radius:2px;margin:12px auto 0;"></div>
+          <!-- Head -->
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:14px 20px 12px;border-bottom:1px solid #F0F0F0;">
+            <div style="display:flex;align-items:center;gap:10px;">
+              <div style="width:14px;height:14px;border-radius:50%;background:#E53935;"></div>
+              <div>
+                <span style="font-size:24px;font-weight:900;color:#1A1A2E;line-height:1;">5</span>
+                <span style="font-size:14px;color:#888;"> &middot; דן</span>
+              </div>
+            </div>
+            <button style="width:30px;height:30px;border-radius:50%;background:#F5F5F5;border:none;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:13px;color:#666;">
+              <i class="fas fa-times"></i>
+            </button>
+          </div>
+          <!-- Body -->
+          <div style="padding:16px 20px;display:flex;flex-direction:column;gap:11px;">
+            <div style="display:flex;align-items:center;gap:8px;color:#555;font-size:14px;">
+              <i class="fas fa-route" style="color:#1B3A6B;font-size:13px;"></i>
+              יפו &#8592; תל אביב מרכז
+            </div>
+            <div style="display:flex;align-items:center;gap:10px;background:#F5F7FA;padding:10px 14px;border-radius:12px;">
+              <i class="fas fa-map-marker-alt" style="color:#AAA;font-size:14px;"></i>
+              <div>
+                <div style="font-size:11px;color:#AAA;">תחנה הבאה</div>
+                <div style="font-size:14px;font-weight:600;color:#1A1A2E;">כיכר דיזנגוף</div>
+              </div>
+            </div>
+            <div style="border-radius:16px;padding:14px 16px;display:flex;align-items:center;justify-content:space-between;background:#FFEBEE;">
+              <div>
+                <div style="font-size:11px;color:#AAA;">% אי-תיקוף (ממוצע קו)</div>
+                <div style="font-size:36px;font-weight:900;line-height:1;color:#E53935;">47%</div>
+                <div style="font-size:11px;color:#AAA;margin-top:3px;">נתונים מ-30 הימים האחרונים</div>
+              </div>
+              <div style="padding:7px 14px;border-radius:20px;font-size:12px;font-weight:700;color:white;background:#E53935;display:flex;align-items:center;gap:5px;">
+                <i class="fas fa-exclamation-circle"></i> עדיפות גבוהה
+              </div>
+            </div>
+            <div style="display:flex;gap:10px;">
+              <div style="flex:1;background:#F5F7FA;border-radius:12px;padding:12px 14px;">
+                <div style="font-size:11px;color:#AAA;margin-bottom:4px;">מרחק</div>
+                <div style="font-size:17px;font-weight:700;color:#1A1A2E;">210 <span style="font-size:12px;color:#AAA;font-weight:400;">מ'</span></div>
+              </div>
+              <div style="flex:1;background:#F5F7FA;border-radius:12px;padding:12px 14px;">
+                <div style="font-size:11px;color:#AAA;margin-bottom:4px;">זמן הגעה משוער</div>
+                <div style="font-size:17px;font-weight:700;color:#1A1A2E;">1 <span style="font-size:12px;color:#AAA;font-weight:400;">דק'</span></div>
+              </div>
+            </div>
+          </div>
+          <!-- Action button -->
+          <div style="padding:4px 20px 20px;">
+            <button style="width:100%;padding:15px;background:linear-gradient(135deg,#1B3A6B 0%,#2756A8 100%);color:white;border:none;border-radius:14px;font-size:16px;font-weight:700;font-family:'Heebo',sans-serif;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;box-shadow:0 4px 18px rgba(27,58,107,0.38);">
+              <i class="fas fa-diamond-turn-right"></i> נווט לתחנה הקרובה
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="ds-code">
+        <span class="cmt">/* bs (Bottom Sheet container) */</span><br>
+        <span class="prop">position</span>: <span class="val">absolute</span>; <span class="prop">bottom</span>: <span class="val">0</span>;<br>
+        <span class="prop">border-radius</span>: <span class="val">24px 24px 0 0</span>;<br>
+        <span class="prop">box-shadow</span>: <span class="str">0 -8px 32px rgba(0,0,0,0.18)</span>;<br>
+        <span class="prop">transform</span>: <span class="val">translateY(100%)</span>; <span class="cmt">/* hidden */</span><br>
+        <span class="prop">transition</span>: <span class="str">transform 0.32s cubic-bezier(0.34,1.08,0.64,1)</span>;<br>
+        <br>
+        <span class="cmt">/* bs.on (visible) */</span><br>
+        <span class="prop">transform</span>: <span class="val">translateY(0)</span>;<br>
+        <br>
+        <span class="cmt">/* Overlay behind sheet */</span><br>
+        <span class="prop">background</span>: <span class="str">rgba(0,0,0,0.35)</span>;<br>
+        <span class="prop">backdrop-filter</span>: <span class="val">blur(2px)</span>;
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       13. MAP MARKERS
+  ═══════════════════════════════════════════ -->
+  <section class="ds-section" id="markers">
+    <h2 class="ds-section-title"><i class="fas fa-map-marker-alt"></i> סימנים במפה</h2>
+
+    <div class="ds-card">
+      <div class="ds-card-title">סימני אוטובוס (Bus Markers)</div>
+      <div class="ds-preview">
+        <div style="display:flex;gap:32px;align-items:end;flex-wrap:wrap;">
+          <!-- Red -->
+          <div style="display:flex;flex-direction:column;align-items:center;cursor:pointer;">
+            <div style="width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:white;font-size:19px;border:2.5px solid white;box-shadow:0 3px 10px rgba(0,0,0,0.28);background:#E53935;position:relative;">
+              <i class="fas fa-bus" style="font-size:17px;"></i>
+            </div>
+            <div style="background:rgba(20,20,40,0.85);color:white;font-size:11px;font-weight:700;padding:2px 8px;border-radius:10px;margin-top:3px;white-space:nowrap;">5</div>
+            <div style="font-size:11px;color:#E53935;margin-top:6px;font-weight:600;">Red - 30%+</div>
+          </div>
+          <!-- Orange -->
+          <div style="display:flex;flex-direction:column;align-items:center;cursor:pointer;">
+            <div style="width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:white;font-size:19px;border:2.5px solid white;box-shadow:0 3px 10px rgba(0,0,0,0.28);background:#FB8C00;">
+              <i class="fas fa-bus" style="font-size:17px;"></i>
+            </div>
+            <div style="background:rgba(20,20,40,0.85);color:white;font-size:11px;font-weight:700;padding:2px 8px;border-radius:10px;margin-top:3px;white-space:nowrap;">66</div>
+            <div style="font-size:11px;color:#FB8C00;margin-top:6px;font-weight:600;">Orange - 15-29%</div>
+          </div>
+          <!-- Green -->
+          <div style="display:flex;flex-direction:column;align-items:center;cursor:pointer;">
+            <div style="width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:white;font-size:19px;border:2.5px solid white;box-shadow:0 3px 10px rgba(0,0,0,0.28);background:#43A047;">
+              <i class="fas fa-bus" style="font-size:17px;"></i>
+            </div>
+            <div style="background:rgba(20,20,40,0.85);color:white;font-size:11px;font-weight:700;padding:2px 8px;border-radius:10px;margin-top:3px;white-space:nowrap;">18</div>
+            <div style="font-size:11px;color:#43A047;margin-top:6px;font-weight:600;">Green - 0-14%</div>
+          </div>
+          <!-- Inspector -->
+          <div style="display:flex;flex-direction:column;align-items:center;">
+            <div style="width:18px;height:18px;border-radius:50%;background:#2979FF;border:3px solid white;box-shadow:0 0 0 5px rgba(41,121,255,0.25);"></div>
+            <div style="font-size:11px;color:#2979FF;margin-top:10px;font-weight:600;">Inspector</div>
+          </div>
+        </div>
+      </div>
+      <div class="ds-code">
+        <span class="cmt">/* bm-circle */</span><br>
+        <span class="prop">width/height</span>: <span class="val">44px</span>; <span class="prop">border-radius</span>: <span class="val">50%</span>;<br>
+        <span class="prop">border</span>: <span class="val">2.5px solid white</span>;<br>
+        <span class="prop">box-shadow</span>: <span class="str">0 3px 10px rgba(0,0,0,0.28)</span>;<br>
+        <br>
+        <span class="cls">.bm-red</span>    { <span class="prop">background</span>: <span class="val">#E53935</span> }<br>
+        <span class="cls">.bm-orange</span> { <span class="prop">background</span>: <span class="val">#FB8C00</span> }<br>
+        <span class="cls">.bm-green</span>  { <span class="prop">background</span>: <span class="val">#43A047</span> }<br>
+        <br>
+        <span class="cmt">/* bm-label (route number) */</span><br>
+        <span class="prop">background</span>: <span class="str">rgba(20,20,40,0.85)</span>;<br>
+        <span class="prop">font-size</span>: <span class="val">11px</span>; <span class="prop">font-weight</span>: <span class="val">700</span>;<br>
+        <span class="prop">padding</span>: <span class="val">2px 8px</span>; <span class="prop">border-radius</span>: <span class="val">10px</span>;<br>
+        <span class="prop">backdrop-filter</span>: <span class="val">blur(4px)</span>;<br>
+        <br>
+        <span class="cmt">/* Red marker has pulse animation */</span><br>
+        <span class="cls">.bm-red::after</span> {<br>
+        &nbsp;&nbsp;<span class="prop">border</span>: <span class="val">2px solid rgba(229,57,53,0.4)</span>;<br>
+        &nbsp;&nbsp;<span class="prop">animation</span>: <span class="val">markerPulse 2s ease-in-out infinite</span>;<br>
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       14. TRAFFIC LIGHT SYSTEM
+  ═══════════════════════════════════════════ -->
+  <section class="ds-section" id="traffic-light">
+    <h2 class="ds-section-title"><i class="fas fa-traffic-light"></i> מערכת רמזור (Traffic Light)</h2>
+    <p class="ds-section-desc">
+      הדפוס המרכזי של האפליקציה. כל אוטובוס מקבל דירוג צבעוני לפי אחוז אי-התיקוף שלו. הצבע מופיע בסימן במפה, בכרטיס המידע, בצ'יפ העדיפות, ובכרטיס האחוזים.
+    </p>
+
+    <div class="ds-card">
+      <div class="ds-card-title">טבלת מיפוי צבעים</div>
+      <table class="ds-table">
+        <thead>
+          <tr>
+            <th>דירוג</th>
+            <th>טווח</th>
+            <th>צבע ראשי</th>
+            <th>רקע כרטיס</th>
+            <th>תווית</th>
+            <th>CSS Classes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <div style="display:flex;align-items:center;gap:8px;">
+                <div style="width:20px;height:20px;border-radius:50%;background:#E53935;"></div>
+                <strong style="color:#E53935;">אדום</strong>
+              </div>
+            </td>
+            <td>30%+</td>
+            <td><code>#E53935</code></td>
+            <td><code>#FFEBEE</code></td>
+            <td>עדיפות גבוהה</td>
+            <td>
+              <code>.bm-red</code>
+              <code>.evc-red</code>
+              <code>.pct-red</code>
+              <code>.chip-red</code>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div style="display:flex;align-items:center;gap:8px;">
+                <div style="width:20px;height:20px;border-radius:50%;background:#FB8C00;"></div>
+                <strong style="color:#FB8C00;">כתום</strong>
+              </div>
+            </td>
+            <td>15-29%</td>
+            <td><code>#FB8C00</code></td>
+            <td><code>#FFF3E0</code></td>
+            <td>עדיפות בינונית</td>
+            <td>
+              <code>.bm-orange</code>
+              <code>.evc-orange</code>
+              <code>.pct-orange</code>
+              <code>.chip-orange</code>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div style="display:flex;align-items:center;gap:8px;">
+                <div style="width:20px;height:20px;border-radius:50%;background:#43A047;"></div>
+                <strong style="color:#43A047;">ירוק</strong>
+              </div>
+            </td>
+            <td>0-14%</td>
+            <td><code>#43A047</code></td>
+            <td><code>#E8F5E9</code></td>
+            <td>עדיפות נמוכה</td>
+            <td>
+              <code>.bm-green</code>
+              <code>.evc-green</code>
+              <code>.pct-green</code>
+              <code>.chip-green</code>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="ds-card">
+      <div class="ds-card-title">איפה הצבע מופיע</div>
+      <table class="ds-table">
+        <thead>
+          <tr><th>רכיב</th><th>שימוש בצבע</th><th>הערה</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Bus Marker Circle</td>
+            <td>background-color של העיגול</td>
+            <td>אדום כולל אנימציית pulse</td>
+          </tr>
+          <tr>
+            <td>Bottom Sheet Dot</td>
+            <td>background-color של הנקודה ליד מספר הקו</td>
+            <td>14x14px</td>
+          </tr>
+          <tr>
+            <td>Evasion Card</td>
+            <td>background-color של כרטיס האחוז (גוון בהיר)</td>
+            <td>Red 50 / Orange 50 / Green 50</td>
+          </tr>
+          <tr>
+            <td>Percentage Number</td>
+            <td>color של המספר הגדול</td>
+            <td>36px / 900 weight</td>
+          </tr>
+          <tr>
+            <td>Priority Chip</td>
+            <td>background-color של הצ'יפ</td>
+            <td>עם טקסט לבן</td>
+          </tr>
+          <tr>
+            <td>Filter Tab (active)</td>
+            <td>background-color של הטאב הפעיל</td>
+            <td>רק כשנבחר</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="ds-card">
+      <div class="ds-card-title">אנימציות סמנטיות</div>
+      <table class="ds-table">
+        <thead>
+          <tr><th>אנימציה</th><th>רכיב</th><th>פרמטרים</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>pulseAlert</strong></td>
+            <td>Alert Pill (כותרת אדומים)</td>
+            <td><code>2.4s ease-in-out infinite</code> - box-shadow pulse</td>
+          </tr>
+          <tr>
+            <td><strong>markerPulse</strong></td>
+            <td>Bus Markers (אדום בלבד)</td>
+            <td><code>2s ease-in-out infinite</code> - ring scale + fade</td>
+          </tr>
+          <tr>
+            <td><strong>fillBar</strong></td>
+            <td>Splash loading bar</td>
+            <td><code>1.9s ease-in-out forwards</code> - width 0 to 100%</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="ds-note">
+        <i class="fas fa-exclamation-triangle" style="color:#FB8C00;"></i>
+        <div>
+          <strong>עקרון:</strong> רק רכיבים אדומים (עדיפות גבוהה) מקבלים אנימציות מתמשכות כדי למשוך את תשומת הלב של הפקח. כתום וירוק הם סטטיים.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       15. RTL PATTERNS
+  ═══════════════════════════════════════════ -->
+  <section class="ds-section" id="rtl">
+    <h2 class="ds-section-title"><i class="fas fa-align-right"></i> RTL - ימין לשמאל</h2>
+    <p class="ds-section-desc">
+      האפליקציה כולה בעברית ומשתמשת בכיוון RTL. להלן הכללים העיקריים:
+    </p>
+
+    <div class="ds-card">
+      <div class="ds-card-title">כללי RTL</div>
+      <table class="ds-table">
+        <thead>
+          <tr><th>נושא</th><th>כלל</th><th>דוגמה</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>כיוון HTML</strong></td>
+            <td>חובה להוסיף <code>dir="rtl"</code> ו-<code>lang="he"</code> ב-tag של html</td>
+            <td><span class="ds-inline-code">&lt;html lang="he" dir="rtl"&gt;</span></td>
+          </tr>
+          <tr>
+            <td><strong>אייקון Input</strong></td>
+            <td>ממוקם מימין (right), לא משמאל</td>
+            <td><span class="ds-inline-code">right: 14px</span> ולא left</td>
+          </tr>
+          <tr>
+            <td><strong>Padding Input</strong></td>
+            <td>ריפוד גדול מימין (עבור האייקון)</td>
+            <td><span class="ds-inline-code">padding: 14px 46px 14px 14px</span></td>
+          </tr>
+          <tr>
+            <td><strong>כפתור "חזרה"</strong></td>
+            <td>חץ ימינה (כי "אחורה" = ימינה ב-RTL)</td>
+            <td><span class="ds-inline-code">fa-arrow-right</span></td>
+          </tr>
+          <tr>
+            <td><strong>חצי כיוון</strong></td>
+            <td>בזרימת שלבים, חצים שמאלה (&#8592;)</td>
+            <td>יפו &#8592; תל אביב מרכז</td>
+          </tr>
+          <tr>
+            <td><strong>Toggle Knob</strong></td>
+            <td>ON = ימין, OFF = שמאל (הפוך מ-LTR)</td>
+            <td><span class="ds-inline-code">right: 3px</span> (ON)</td>
+          </tr>
+          <tr>
+            <td><strong>Flex Direction</strong></td>
+            <td>ב-RTL, flex items מסודרים מימין לשמאל אוטומטית</td>
+            <td>אין צורך לשנות flex-direction</td>
+          </tr>
+          <tr>
+            <td><strong>Sidebar Nav Active</strong></td>
+            <td>border-right (לא left) כי הסיידבר מימין</td>
+            <td><span class="ds-inline-code">border-right: 3px solid</span></td>
+          </tr>
+          <tr>
+            <td><strong>Code Blocks</strong></td>
+            <td>קוד תמיד LTR</td>
+            <td><span class="ds-inline-code">direction: ltr; text-align: left;</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="ds-note">
+      <i class="fas fa-exclamation-triangle" style="color:#FB8C00;"></i>
+      <div>
+        <strong>שגיאה נפוצה:</strong> לעולם לא להשתמש בחץ ימינה (&#8594;) לזרימת שלבים בעברית. הזרימה היא מימין לשמאל, לכן חץ שמאלה (&#8592;) הוא הנכון.
+        <br><br>
+        <span style="color:#E53935;font-weight:700;">לא נכון:</span> יפו &#8594; תל אביב מרכז
+        <br>
+        <span style="color:#43A047;font-weight:700;">נכון:</span> יפו &#8592; תל אביב מרכז
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       16. LAYOUT PATTERNS
+  ═══════════════════════════════════════════ -->
+  <section class="ds-section" id="layout">
+    <h2 class="ds-section-title"><i class="fas fa-th-large"></i> מבנה עמוד</h2>
+
+    <div class="ds-card">
+      <div class="ds-card-title">מבנה מסכים</div>
+      <p class="ds-section-desc" style="margin-bottom:16px;">
+        האפליקציה בנויה כ-Single Page Application עם 4 מסכים שמוצגים לפי מצב. כל מסך הוא flex column שתופס את כל הגובה.
+      </p>
+      <table class="ds-table">
+        <thead>
+          <tr><th>מסך</th><th>מבנה</th><th>רקע</th><th>הערות</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Splash</strong></td>
+            <td>Centered flex</td>
+            <td><code>linear-gradient(170deg, #1B3A6B, #0A1E3F)</code></td>
+            <td>Loading bar + footer absolute</td>
+          </tr>
+          <tr>
+            <td><strong>Login</strong></td>
+            <td>Hero (gradient) + Form (scroll)</td>
+            <td><code>#F5F7FA</code></td>
+            <td>Hero 28px padding, Form 22px padding</td>
+          </tr>
+          <tr>
+            <td><strong>Map</strong></td>
+            <td>Header (fixed) + Map (flex:1) + FAB + Sheet</td>
+            <td><code>#E8ECF0</code></td>
+            <td>Map ב-z-index 0, Header ב-300, Sheet ב-700</td>
+          </tr>
+          <tr>
+            <td><strong>Settings</strong></td>
+            <td>Header (fixed) + Scroll content</td>
+            <td><code>#F5F7FA</code></td>
+            <td>Gap 20px בין כרטיסים</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="ds-card">
+      <div class="ds-card-title">מבנה Phone Frame</div>
+      <div class="ds-code">
+        <span class="cmt">/* Phone Frame - Desktop Preview */</span><br>
+        <span class="cls">.phone-frame</span> {<br>
+        &nbsp;&nbsp;<span class="prop">width</span>: <span class="val">390px</span>; <span class="prop">height</span>: <span class="val">844px</span>; <span class="cmt">/* iPhone 14 Pro dimensions */</span><br>
+        &nbsp;&nbsp;<span class="prop">border-radius</span>: <span class="val">50px</span>;<br>
+        &nbsp;&nbsp;<span class="prop">display</span>: <span class="val">flex</span>; <span class="prop">flex-direction</span>: <span class="val">column</span>;<br>
+        }<br>
+        <br>
+        <span class="cmt">/* Dynamic Island */</span><br>
+        <span class="cls">.phone-frame::before</span> {<br>
+        &nbsp;&nbsp;<span class="prop">width</span>: <span class="val">100px</span>; <span class="prop">height</span>: <span class="val">26px</span>;<br>
+        &nbsp;&nbsp;<span class="prop">border-radius</span>: <span class="val">14px</span>;<br>
+        &nbsp;&nbsp;<span class="prop">top</span>: <span class="val">8px</span>; <span class="prop">z-index</span>: <span class="val">10000</span>;<br>
+        }<br>
+        <br>
+        <span class="cmt">/* Mobile override - fullscreen */</span><br>
+        <span class="cls">@media (max-width: 430px)</span> {<br>
+        &nbsp;&nbsp;<span class="prop">width</span>: <span class="val">100vw</span>; <span class="prop">height</span>: <span class="val">100dvh</span>;<br>
+        &nbsp;&nbsp;<span class="prop">border-radius</span>: <span class="val">0</span>;<br>
+        }
+      </div>
+    </div>
+
+    <div class="ds-card">
+      <div class="ds-card-title">Z-Index Stack</div>
+      <table class="ds-table">
+        <thead>
+          <tr><th>Z-Index</th><th>רכיב</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><code>10000</code></td><td>Dynamic Island (phone-frame::before)</td></tr>
+          <tr><td><code>700</code></td><td>Bottom Sheet</td></tr>
+          <tr><td><code>600</code></td><td>Overlay</td></tr>
+          <tr><td><code>500</code></td><td>FAB</td></tr>
+          <tr><td><code>300</code></td><td>Map Header</td></tr>
+          <tr><td><code>200</code></td><td>Status Bar</td></tr>
+          <tr><td><code>0</code></td><td>Map (Leaflet)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="ds-card">
+      <div class="ds-card-title">ספריות חיצוניות</div>
+      <table class="ds-table">
+        <thead>
+          <tr><th>ספריה</th><th>גרסה</th><th>שימוש</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Heebo</strong></td>
+            <td>Google Fonts</td>
+            <td>פונט ראשי (עברית)</td>
+          </tr>
+          <tr>
+            <td><strong>Font Awesome</strong></td>
+            <td>6.5.0</td>
+            <td>אייקונים (fas prefix)</td>
+          </tr>
+          <tr>
+            <td><strong>Leaflet</strong></td>
+            <td>1.9.4</td>
+            <td>מפה אינטראקטיבית</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="ds-card">
+      <div class="ds-card-title">אייקוני Font Awesome בשימוש</div>
+      <div class="ds-preview">
+        <div style="display:flex;flex-wrap:wrap;gap:16px;">
+          <div style="text-align:center;width:64px;">
+            <i class="fas fa-bus" style="font-size:20px;color:#1B3A6B;"></i>
+            <div style="font-size:10px;color:#888;margin-top:4px;">fa-bus</div>
+          </div>
+          <div style="text-align:center;width:64px;">
+            <i class="fas fa-exclamation-circle" style="font-size:20px;color:#E53935;"></i>
+            <div style="font-size:10px;color:#888;margin-top:4px;">exclamation-circle</div>
+          </div>
+          <div style="text-align:center;width:64px;">
+            <i class="fas fa-route" style="font-size:20px;color:#1B3A6B;"></i>
+            <div style="font-size:10px;color:#888;margin-top:4px;">fa-route</div>
+          </div>
+          <div style="text-align:center;width:64px;">
+            <i class="fas fa-map-marker-alt" style="font-size:20px;color:#AAA;"></i>
+            <div style="font-size:10px;color:#888;margin-top:4px;">map-marker</div>
+          </div>
+          <div style="text-align:center;width:64px;">
+            <i class="fas fa-location-arrow" style="font-size:20px;color:#1B3A6B;"></i>
+            <div style="font-size:10px;color:#888;margin-top:4px;">location-arrow</div>
+          </div>
+          <div style="text-align:center;width:64px;">
+            <i class="fas fa-diamond-turn-right" style="font-size:20px;color:#1B3A6B;"></i>
+            <div style="font-size:10px;color:#888;margin-top:4px;">diamond-turn</div>
+          </div>
+          <div style="text-align:center;width:64px;">
+            <i class="fas fa-sync-alt" style="font-size:20px;color:#00838F;"></i>
+            <div style="font-size:10px;color:#888;margin-top:4px;">sync-alt</div>
+          </div>
+          <div style="text-align:center;width:64px;">
+            <i class="fas fa-cog" style="font-size:20px;color:#888;"></i>
+            <div style="font-size:10px;color:#888;margin-top:4px;">fa-cog</div>
+          </div>
+          <div style="text-align:center;width:64px;">
+            <i class="fas fa-bell" style="font-size:20px;color:#FB8C00;"></i>
+            <div style="font-size:10px;color:#888;margin-top:4px;">fa-bell</div>
+          </div>
+          <div style="text-align:center;width:64px;">
+            <i class="fas fa-sign-in-alt" style="font-size:20px;color:#1B3A6B;"></i>
+            <div style="font-size:10px;color:#888;margin-top:4px;">sign-in</div>
+          </div>
+          <div style="text-align:center;width:64px;">
+            <i class="fas fa-sign-out-alt" style="font-size:20px;color:#E53935;"></i>
+            <div style="font-size:10px;color:#888;margin-top:4px;">sign-out</div>
+          </div>
+          <div style="text-align:center;width:64px;">
+            <i class="fas fa-fingerprint" style="font-size:20px;color:#1B3A6B;"></i>
+            <div style="font-size:10px;color:#888;margin-top:4px;">fingerprint</div>
+          </div>
+          <div style="text-align:center;width:64px;">
+            <i class="fas fa-id-badge" style="font-size:20px;color:#AAA;"></i>
+            <div style="font-size:10px;color:#888;margin-top:4px;">id-badge</div>
+          </div>
+          <div style="text-align:center;width:64px;">
+            <i class="fas fa-lock" style="font-size:20px;color:#AAA;"></i>
+            <div style="font-size:10px;color:#888;margin-top:4px;">fa-lock</div>
+          </div>
+          <div style="text-align:center;width:64px;">
+            <i class="fas fa-arrow-right" style="font-size:20px;color:white;background:#1B3A6B;padding:6px;border-radius:6px;"></i>
+            <div style="font-size:10px;color:#888;margin-top:4px;">arrow-right</div>
+          </div>
+          <div style="text-align:center;width:64px;">
+            <i class="fas fa-times" style="font-size:20px;color:#666;"></i>
+            <div style="font-size:10px;color:#888;margin-top:4px;">fa-times</div>
+          </div>
+          <div style="text-align:center;width:64px;">
+            <i class="fas fa-circle-notch" style="font-size:20px;color:#1B3A6B;"></i>
+            <div style="font-size:10px;color:#888;margin-top:4px;">circle-notch</div>
+          </div>
+          <div style="text-align:center;width:64px;">
+            <i class="fas fa-signal" style="font-size:20px;color:#888;"></i>
+            <div style="font-size:10px;color:#888;margin-top:4px;">fa-signal</div>
+          </div>
+          <div style="text-align:center;width:64px;">
+            <i class="fas fa-wifi" style="font-size:20px;color:#888;"></i>
+            <div style="font-size:10px;color:#888;margin-top:4px;">fa-wifi</div>
+          </div>
+          <div style="text-align:center;width:64px;">
+            <i class="fas fa-battery-three-quarters" style="font-size:20px;color:#888;"></i>
+            <div style="font-size:10px;color:#888;margin-top:4px;">battery</div>
+          </div>
+          <div style="text-align:center;width:64px;">
+            <i class="fas fa-info" style="font-size:20px;color:#90A4AE;"></i>
+            <div style="font-size:10px;color:#888;margin-top:4px;">fa-info</div>
+          </div>
+          <div style="text-align:center;width:64px;">
+            <i class="fas fa-server" style="font-size:20px;color:#90A4AE;"></i>
+            <div style="font-size:10px;color:#888;margin-top:4px;">fa-server</div>
+          </div>
+          <div style="text-align:center;width:64px;">
+            <i class="fas fa-database" style="font-size:20px;color:#90A4AE;"></i>
+            <div style="font-size:10px;color:#888;margin-top:4px;">fa-database</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ═══════════════════════════════════════════
+     SIDEBAR SCROLL SPY
+═══════════════════════════════════════════ -->
+<script>
+// Smooth scroll for sidebar links
+document.querySelectorAll('.ds-nav-link').forEach(link => {
+  link.addEventListener('click', (e) => {
+    e.preventDefault();
+    const targetId = link.getAttribute('href').substring(1);
+    const target = document.getElementById(targetId);
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+    // Update active
+    document.querySelectorAll('.ds-nav-link').forEach(l => l.classList.remove('active'));
+    link.classList.add('active');
+  });
+});
+
+// Scroll spy
+const sections = document.querySelectorAll('.ds-section');
+const navLinks = document.querySelectorAll('.ds-nav-link');
+
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(section => {
+    const sectionTop = section.offsetTop - 100;
+    if (window.scrollY >= sectionTop) {
+      current = section.getAttribute('id');
+    }
+  });
+
+  navLinks.forEach(link => {
+    link.classList.remove('active');
+    if (link.getAttribute('href') === '#' + current) {
+      link.classList.add('active');
+    }
+  });
+});
+</script>
+
+</body>
+</html>

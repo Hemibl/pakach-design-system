@@ -1,0 +1,276 @@
+{
+  "color": {
+    "brand": {
+      "navy-900": {
+        "$value": "#0A1E3F",
+        "$type": "color",
+        "$description": "הכי כהה - רקע כהה, Hero"
+      },
+      "navy-700": {
+        "$value": "#1B3A6B",
+        "$type": "color",
+        "$description": "ראשי - כפתורים, סיידבר, הדר"
+      },
+      "navy-500": {
+        "$value": "#2756A8",
+        "$type": "color",
+        "$description": "משני - לינקים, אקצנטים"
+      },
+      "navy-100": {
+        "$value": "#EEF2FF",
+        "$type": "color",
+        "$description": "רקע בהיר - הערות, רקע משני"
+      }
+    },
+    "semantic": {
+      "red-500": {
+        "$value": "#E53935",
+        "$type": "color",
+        "$description": "רמזור אדום - עדיפות גבוהה"
+      },
+      "red-50": {
+        "$value": "#FFEBEE",
+        "$type": "color",
+        "$description": "רקע אדום בהיר"
+      },
+      "orange-500": {
+        "$value": "#FB8C00",
+        "$type": "color",
+        "$description": "רמזור כתום - עדיפות בינונית"
+      },
+      "orange-50": {
+        "$value": "#FFF3E0",
+        "$type": "color",
+        "$description": "רקע כתום בהיר"
+      },
+      "green-500": {
+        "$value": "#43A047",
+        "$type": "color",
+        "$description": "רמזור ירוק - עדיפות נמוכה"
+      },
+      "green-50": {
+        "$value": "#E8F5E9",
+        "$type": "color",
+        "$description": "רקע ירוק בהיר"
+      }
+    },
+    "ui": {
+      "blue-accent": {
+        "$value": "#2979FF",
+        "$type": "color",
+        "$description": "מיקום פקח, אקצנט כחול"
+      },
+      "teal-500": {
+        "$value": "#00838F",
+        "$type": "color",
+        "$description": "צבע משלים"
+      },
+      "white": {
+        "$value": "#FFFFFF",
+        "$type": "color"
+      }
+    },
+    "neutral": {
+      "gray-900": {
+        "$value": "#1A1A2E",
+        "$type": "color",
+        "$description": "טקסט ראשי"
+      },
+      "gray-700": {
+        "$value": "#444444",
+        "$type": "color",
+        "$description": "טקסט משני"
+      },
+      "gray-500": {
+        "$value": "#888888",
+        "$type": "color",
+        "$description": "טקסט עזר"
+      },
+      "gray-400": {
+        "$value": "#AAAAAA",
+        "$type": "color",
+        "$description": "תוויות, placeholder"
+      },
+      "gray-300": {
+        "$value": "#C0C0C0",
+        "$type": "color"
+      },
+      "gray-200": {
+        "$value": "#E0E0E0",
+        "$type": "color",
+        "$description": "מפרידים"
+      },
+      "gray-100": {
+        "$value": "#F0F0F0",
+        "$type": "color",
+        "$description": "גבולות בהירים"
+      },
+      "gray-50": {
+        "$value": "#F5F7FA",
+        "$type": "color",
+        "$description": "רקע דף"
+      }
+    },
+    "border": {
+      "light": {
+        "$value": "#E2E8F0",
+        "$type": "color",
+        "$description": "גבול סטנדרטי"
+      },
+      "subtle": {
+        "$value": "#F5F5F5",
+        "$type": "color",
+        "$description": "גבול עדין"
+      }
+    }
+  },
+  "number": {
+    "borderRadius": {
+      "sm": {
+        "$value": 8,
+        "$type": "number",
+        "$description": "קוד, כפתורים קטנים"
+      },
+      "md": {
+        "$value": 12,
+        "$type": "number",
+        "$description": "שדות קלט, כרטיסים קטנים"
+      },
+      "lg": {
+        "$value": 14,
+        "$type": "number",
+        "$description": "כרטיסים, Bottom Sheet"
+      },
+      "xl": {
+        "$value": 18,
+        "$type": "number",
+        "$description": "כרטיסים ראשיים, מודלים"
+      },
+      "pill": {
+        "$value": 20,
+        "$type": "number",
+        "$description": "כפתורים, צ'יפים, טאבים"
+      },
+      "full": {
+        "$value": 9999,
+        "$type": "number",
+        "$description": "עיגולים - אווטאר, אינדיקטורים"
+      }
+    },
+    "spacing": {
+      "2xs": {
+        "$value": 4,
+        "$type": "number"
+      },
+      "xs": {
+        "$value": 6,
+        "$type": "number"
+      },
+      "sm": {
+        "$value": 8,
+        "$type": "number"
+      },
+      "md": {
+        "$value": 10,
+        "$type": "number"
+      },
+      "base": {
+        "$value": 12,
+        "$type": "number"
+      },
+      "lg": {
+        "$value": 14,
+        "$type": "number"
+      },
+      "xl": {
+        "$value": 16,
+        "$type": "number"
+      },
+      "2xl": {
+        "$value": 20,
+        "$type": "number"
+      },
+      "3xl": {
+        "$value": 24,
+        "$type": "number"
+      },
+      "4xl": {
+        "$value": 28,
+        "$type": "number"
+      },
+      "5xl": {
+        "$value": 32,
+        "$type": "number"
+      },
+      "6xl": {
+        "$value": 40,
+        "$type": "number"
+      },
+      "7xl": {
+        "$value": 48,
+        "$type": "number"
+      },
+      "8xl": {
+        "$value": 56,
+        "$type": "number"
+      }
+    },
+    "fontSize": {
+      "3xs-10": {
+        "$value": 10,
+        "$type": "number",
+        "$description": "Section labels"
+      },
+      "2xs-11": {
+        "$value": 11,
+        "$type": "number",
+        "$description": "Captions, labels"
+      },
+      "xs-12": {
+        "$value": 12,
+        "$type": "number",
+        "$description": "Filter tabs, badges"
+      },
+      "sm-13": {
+        "$value": 13,
+        "$type": "number",
+        "$description": "Alert pills, chips, form labels"
+      },
+      "md-14": {
+        "$value": 14,
+        "$type": "number",
+        "$description": "Direction, stop values"
+      },
+      "base-15": {
+        "$value": 15,
+        "$type": "number",
+        "$description": "Input, body text"
+      },
+      "lg-16": {
+        "$value": 16,
+        "$type": "number",
+        "$description": "User name, body"
+      },
+      "xl-17": {
+        "$value": 17,
+        "$type": "number",
+        "$description": "Header title, button text"
+      },
+      "2xl-24": {
+        "$value": 24,
+        "$type": "number",
+        "$description": "App name, route number"
+      },
+      "3xl-30": {
+        "$value": 30,
+        "$type": "number",
+        "$description": "Splash title"
+      },
+      "4xl-36": {
+        "$value": 36,
+        "$type": "number",
+        "$description": "Big metric"
+      }
+    }
+  }
+}
